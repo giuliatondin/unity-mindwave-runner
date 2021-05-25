@@ -1,0 +1,4 @@
+{
+    "omnisharp.organizeImportsOnFormat": true,
+    "csharp.format.enable": false
+}
