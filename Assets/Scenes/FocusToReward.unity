@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3529412, g: 0.54509807, b: 0.5019608, a: 1}
+  m_Color: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -371,7 +371,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -461,7 +461,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -486,9 +486,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c448d56552fd7434abfe99dc488e663c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maximum: 100
-  current: 100
   mask: {fileID: 497976464}
+  decrementProgress: {fileID: 21300086, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
+  incrementProgress: {fileID: 21300084, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
 --- !u!1 &1014012706
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +643,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1575671957}
   m_CullTransparentMesh: 1
+--- !u!1 &1870767387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1870767391}
+  - component: {fileID: 1870767390}
+  - component: {fileID: 1870767389}
+  - component: {fileID: 1870767388}
+  m_Layer: 0
+  m_Name: MindwaveManager_Singleton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1870767388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870767387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157f6a34d55f8dc4794c56a66ce9ed49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1870767389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870767387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eb3bc418a0f5064f9ab597b87a4866c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Controller: {fileID: 0}
+  m_DataMode: 0
+  m_MaxDataLength: 100
+  m_DeltaWaves: {x: 0, y: 2000000}
+  m_ThetaWaves: {x: 0, y: 2000000}
+  m_LowAlphaWaves: {x: 0, y: 2000000}
+  m_HighAlphaWaves: {x: 0, y: 2000000}
+  m_LowBetaWaves: {x: 0, y: 2000000}
+  m_HighBetaWaves: {x: 0, y: 2000000}
+  m_LowGammaWaves: {x: 0, y: 2000000}
+  m_HighGammaWaves: {x: 0, y: 2000000}
+--- !u!114 &1870767390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870767387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e330e73c726a06f4f94b9b0511d4467d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TcpHostname: 127.0.0.1
+  m_TcpPort: 13854
+  m_TryConnectAtStart: 1
+  m_ConnectionTimeout: 10
+  m_UpdateStreamRate: 0.02
+  m_ShowDataPackets: 1
+  m_ShowStreamErrors: 0
+  m_ConnectedFlag: 0
+  mindwaveHandlerControl: 0
+--- !u!4 &1870767391
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1870767387}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1959169095
 GameObject:
   m_ObjectHideFlags: 0

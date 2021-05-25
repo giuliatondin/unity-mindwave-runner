@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
             //anim.SetTrigger("Hit");
             anim.SetBool("Hit", true);
             anim.Play("Hit");
-            speed = 0;
+            speed = 0; // FIXME: Não está diminuindo velocidade quando bate, na vdd animação demora mt tempo para voltar a correr
             if (currentLife <= 0)
             {
                 speed = 0;
