@@ -1,4 +1,5 @@
 {
     "omnisharp.organizeImportsOnFormat": true,
-    "csharp.format.enable": false
+    "csharp.format.enable": false,
+    "git.ignoreLimitWarning": true
 }
