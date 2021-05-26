@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
     // Variables to make character collide and lose life
     public int maxLife = 3;
     private int currentLife;
+    private bool isHit = false;
     public float minSpeed = 10f;
     public float maxSpeed = 30f;
     private bool invencible = false;
@@ -207,34 +208,30 @@ public class Player : MonoBehaviour
     }
 
     // Make character collide with obstacles
-    private void OnTriggerEnter(Collider other)
-    {
+    private void OnTriggerEnter(Collider other) {
         // Compare if object collided is a coin
-        if (other.CompareTag("Coin"))
-        {
+        if (other.CompareTag("Coin")) {
             coins++;
             uiManager.UpdateCoins(coins);
             other.transform.parent.gameObject.SetActive(false);
         }
 
         if (invencible) return;
-        if (other.CompareTag("Obstacle"))
-        {
+
+        if (other.CompareTag("Obstacle")) {
             currentLife--;
             uiManager.UpdateLives(currentLife);
             //anim.SetTrigger("Hit");
             anim.SetBool("Hit", true);
             anim.Play("Hit");
-            speed = 0; // FIXME: Não está diminuindo velocidade quando bate, na vdd animação demora mt tempo para voltar a correr
-            if (currentLife <= 0)
-            {
+            speed = 0; 
+            if (currentLife <= 0) {
                 speed = 0;
                 anim.SetBool("Dead", true);
                 uiManager.gameOverPanel.SetActive(true);
                 Invoke("CallMenu", 2f);
-            }
-            else
-            {
+            } else {
+                isHit = true;
                 StartCoroutine(Blinking(invencibleTime));
                 anim.SetBool("Hit", false);
             }
@@ -242,8 +239,7 @@ public class Player : MonoBehaviour
     }
 
     // Visual blink when character collide
-    IEnumerator Blinking(float time)
-    {
+    IEnumerator Blinking(float time) {
         invencible = true;
         float timer = 0;
         float currentBlink = 1f;
@@ -252,14 +248,13 @@ public class Player : MonoBehaviour
         bool enabled = false;
         yield return new WaitForSeconds(1f);
         speed = minSpeed;
-        while (timer < time && invencible)
-        {
+        isHit = false;
+        while (timer < time && invencible) {
             model.SetActive(enabled);
             yield return null;
             timer += Time.deltaTime;
             lastBlink += Time.deltaTime;
-            if (blinkPeriod < lastBlink)
-            {
+            if (blinkPeriod < lastBlink) {
                 lastBlink = 0;
                 currentBlink = 1f - currentBlink;
                 enabled = !enabled;
@@ -269,24 +264,28 @@ public class Player : MonoBehaviour
         invencible = false;
     }
 
-    void CallMenu()
-    {
+    void CallMenu() {
         GameManager.gm.EndRun();
     }
 
     // Update speed
-    public void SpeedControl()
-    {
+    public void SpeedControl() {
         if (speed >= maxSpeed) speed = maxSpeed;
         if (speed <= minSpeed) speed = minSpeed;
 
-        // TODO: Bonus nas moedas se atenção maior que 80
-        if(attention > 80) {
-            speed *= 1.0005f;
-        } else if(attention > 60 && attention < 80) {
-            speed *= 1.0001f;
+        if(currentLife <= 0) speed = 0;
+
+        if(isHit) {
+            speed = 0;
         } else {
-            speed /= 1.0005f;
+            // TODO: Bonus nas moedas se atenção maior que 80
+            if(attention > 80) {
+                speed *= 1.0005f;
+            } else if(attention > 60 && attention < 80) {
+                speed *= 1.0001f;
+            } else {
+                speed /= 1.0005f;
+            }
         }
     }
 }
