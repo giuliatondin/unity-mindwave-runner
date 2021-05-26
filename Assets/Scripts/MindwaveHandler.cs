@@ -15,14 +15,20 @@ public class MindwaveHandler : MonoBehaviour
 
     public GameObject btnStart;
     public Text waitDescriptionText;
+    public Text sceneDescription;
+
     public Text blinkControllerText;
 
     // Start is called before the first frame update
-    // TODO: Change waiting text and button text
     void Start() {
         btnStart.SetActive(false);
         waitDescriptionText = GameObject.Find("Waiting Text").GetComponent<Text>();
+        sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
         //blinkControllerText = GameObject.Find("Blink Controller Text").GetComponent<Text>();
+
+        // Change description text depending of the chosen scene //TODO: Define text description
+        if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Coloque o headset e prepare-se para correr! Coloque o headset e prepare-se para correr!";
+        else if(Menu.sceneControl == 2) sceneDescription.text = "Coloque o headset e foque para receber a recompensa! Coloque o headset e foque para receber a recompensa! Coloque o headset e foque para receber a recompensa!";
     }
 
     // Update is called once per frame
@@ -42,10 +48,17 @@ public class MindwaveHandler : MonoBehaviour
 	}
 
     public void ConnectMindwave() {
+        // If Mindwave Headset send data, the button to start next scene is activate
         if (m_MindwaveData.eegPower.delta > 0) {
             waitDescriptionText.text = "Conexão estabelecida";
             btnStart.SetActive(true);
         } 
+    }
+
+    // Function to change to scene
+    public void ChangeScene() {
+        if(Menu.sceneControl == 1) GameManager.gm.StartRun();
+        else if(Menu.sceneControl == 2) GameManager.gm.StartReward();
     }
 
     // public void BlinkController() {
@@ -55,17 +68,4 @@ public class MindwaveHandler : MonoBehaviour
     //         blinkControllerText.text = "Esperando isso funcionar";
     //     }
     // }
-
-    // Function to change to scene
-    public void ChangeScene() {
-        if(Menu.sceneControl == 1) {
-            GameManager.gm.StartRun();
-        } else if(Menu.sceneControl == 2) {
-            GameManager.gm.StartReward();
-        }
-    }
-
-    public void StartRun() {
-        GameManager.gm.StartRun();
-    }
 }

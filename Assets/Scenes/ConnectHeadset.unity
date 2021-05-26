@@ -298,6 +298,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 393663726}
+  - {fileID: 1685705436}
   - {fileID: 710440793}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -343,7 +344,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000013351, y: -75.9}
+  m_AnchoredPosition: {x: 3, y: -331}
   m_SizeDelta: {x: 323.544, y: 75.8273}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &393663727
@@ -580,11 +581,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 238063322}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: 104.23}
+  m_AnchoredPosition: {x: 8, y: -461}
   m_SizeDelta: {x: 877.8243, y: 260.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &710440794
@@ -609,7 +610,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 04cb66914ee1bec45bfbed9f88f6c511, type: 3}
-    m_FontSize: 80
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -660,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnStart: {fileID: 393663725}
   waitDescriptionText: {fileID: 0}
+  sceneDescription: {fileID: 0}
   blinkControllerText: {fileID: 0}
 --- !u!4 &736072144
 Transform:
@@ -856,6 +858,85 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1685705435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685705436}
+  - component: {fileID: 1685705438}
+  - component: {fileID: 1685705437}
+  m_Layer: 5
+  m_Name: Scene Description
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1685705436
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685705435}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 238063322}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -1.7238, y: 196}
+  m_SizeDelta: {x: 1526.7375, y: 225.3125}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1685705437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685705435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 04cb66914ee1bec45bfbed9f88f6c511, type: 3}
+    m_FontSize: 60
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 6
+    m_MaxSize: 80
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "Texto para realizar a descri\xE7\xE3o da cena"
+--- !u!222 &1685705438
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685705435}
+  m_CullTransparentMesh: 1
 --- !u!1 &2075786161
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,7 +1007,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Iniciar corrida
+  m_Text: Iniciar
 --- !u!222 &2075786164
 CanvasRenderer:
   m_ObjectHideFlags: 0
