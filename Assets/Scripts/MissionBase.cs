@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Criar missões para jogo
+
 // Help in mission selection
 public enum MissionType
 {
@@ -37,7 +39,7 @@ public class SingleRun : MissionBase
     public override void Created()
     {
         missionType = MissionType.SingleRun;
-        int[] maxValues = { 1000, 2000, 3000, 4000 };
+        int[] maxValues = { 100, 200, 300, 400 };
         int randomMaxValue = Random.Range(0, maxValues.Length);
         int[] rewards = { 100, 200, 300, 400 }; // win coins if complete each meters
         reward = rewards[randomMaxValue];
@@ -69,9 +71,9 @@ public class TotalMeters : MissionBase
     public override void Created()
     {
         missionType = MissionType.TotalMeters;
-        int[] maxValues = { 10000, 20000, 30000, 40000 };
+        int[] maxValues = { 100, 200, 300, 400 };
         int randomMaxValue = Random.Range(0, maxValues.Length);
-        int[] rewards = { 1000, 2000, 3000, 4000 };
+        int[] rewards = { 100, 200, 300, 400 };
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
         progress = 0;

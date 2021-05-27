@@ -127,7 +127,6 @@ public class GameManager : MonoBehaviour
         // Check if user's folder already exists, if not, create new user
         if(!Directory.Exists(folderPath)){
             Directory.CreateDirectory(folderPath);
-            Debug.Log("Usuário criado");
         } 
 
         // Create path to save file with game data
@@ -137,14 +136,10 @@ public class GameManager : MonoBehaviour
         missions = new MissionBase[2];
 
         // Verify if file already exists, if yes, load data, else, create
-        if (File.Exists(filePath))
-        {
+        if (File.Exists(filePath)) {
             Load();
-        }
-        else
-        {
-            for (int i = 0; i < missions.Length; i++)
-            {
+        } else {
+            for (int i = 0; i < missions.Length; i++) {
                 GameObject newMission = new GameObject("Mission" + i);
                 newMission.transform.SetParent(transform);
                 // create vector of mission's type 
@@ -169,14 +164,12 @@ public class GameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
     }
 

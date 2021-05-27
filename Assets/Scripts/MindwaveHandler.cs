@@ -11,17 +11,18 @@ public class MindwaveHandler : MonoBehaviour
     // Variables that collect mindwave data
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
+    [SerializeField]
+	private MindwaveController m_Controller;
     private int m_BlinkStrength = 0;
 
     public GameObject btnStart;
-    public Text waitDescriptionText;
-    public Text sceneDescription;
-
-    public Text blinkControllerText;
+    public GameObject btnRetry;
+    private Text waitDescriptionText;
+    private Text sceneDescription;
+    private Text blinkControllerText;
 
     // Start is called before the first frame update
     void Start() {
-        btnStart.SetActive(false);
         waitDescriptionText = GameObject.Find("Waiting Text").GetComponent<Text>();
         sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
         //blinkControllerText = GameObject.Find("Blink Controller Text").GetComponent<Text>();
@@ -50,15 +51,26 @@ public class MindwaveHandler : MonoBehaviour
     public void ConnectMindwave() {
         // If Mindwave Headset send data, the button to start next scene is activate
         if (m_MindwaveData.eegPower.delta > 0) {
-            waitDescriptionText.text = "Conexão estabelecida";
+            waitDescriptionText.text = "Conexão estabelecida"; // TODO: Add retry if connect failed
             btnStart.SetActive(true);
-        } 
+        }
+
+        if(MindwaveController.isTimeout) {
+            btnRetry.SetActive(true);
+        }  
     }
 
     // Function to change to scene
     public void ChangeScene() {
         if(Menu.sceneControl == 1) GameManager.gm.StartRun();
         else if(Menu.sceneControl == 2) GameManager.gm.StartReward();
+    }
+
+    // TODO: Parei aqui
+    public void RetryConnection() {
+        MindwaveManager.Instance.Controller.Connect();
+        MindwaveController.isTimeout = false;
+        btnRetry.SetActive(false);
     }
 
     // public void BlinkController() {

@@ -38,7 +38,6 @@ public class Login : MonoBehaviour
     }
 
     private void EnterGame() {
-        Debug.Log("Você fez login como " + userName);
         this.gameObject.SetActive(false);
         SceneManager.LoadScene("Menu");
     }

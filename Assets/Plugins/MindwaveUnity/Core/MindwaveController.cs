@@ -73,8 +73,9 @@ public class MindwaveController : MonoBehaviour
 		[SerializeField, Tooltip("If it's set to false, you must connect to Mindwave manually using Connect(). Else, automatically try to connect to Mindwave at game start.")]
 		private bool m_TryConnectAtStart = true;
 
-		[SerializeField, Range(0.0f, 30.0f), Tooltip("Defines the timing before a connection try timeouts.")]
+		[SerializeField, Range(0.0f, 10.0f), Tooltip("Defines the timing before a connection try timeouts.")]
 		private float m_ConnectionTimeout = 10.0f;
+		public static bool isTimeout = false;
 
 		[SerializeField, Range(0.0f, 1.0f), Tooltip("Defines the interval between each Mindwave call.")]
 		private float m_UpdateStreamRate = 0.02f;
@@ -94,7 +95,7 @@ public class MindwaveController : MonoBehaviour
 		private byte[] m_Buffer = { };
 
 		private Coroutine m_StreamRoutine = null;
-		public bool m_ConnectedFlag = false;
+		public static bool m_ConnectedFlag = false;
 		// This flag is here to check if the conection is timed out
 		private bool m_PendingConnection = false;
 
@@ -134,6 +135,7 @@ public class MindwaveController : MonoBehaviour
 		public void Connect()
 		{
 			ConnectToMindwave();
+			isTimeout = false;
 		}
 
 		public void Disconnect()
@@ -321,8 +323,10 @@ public class MindwaveController : MonoBehaviour
 					if(OnConnectionTimeout != null)
 					{
 						OnConnectionTimeout();
+						isTimeout = false;
 					}
 					Disconnect();
+					isTimeout = true;
 				}
 			}
 		}

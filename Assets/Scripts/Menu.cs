@@ -16,8 +16,11 @@ public class Menu : MonoBehaviour
     // Text that show in menu quantity of fishes
     public Text coinsText;
 
-    // Variable that control what scenes is to load next
+    // Variable that control wich scene is to load next
     public static int sceneControl = 0; // if 1 = run, 2 = reward;
+
+    // Variable that control wich mission is select to collect reward
+    public static int missionIndex;
 
     // Start is called before the first frame update
     void Start() {
@@ -26,6 +29,11 @@ public class Menu : MonoBehaviour
         welcome.text = "Olá, " + Login.userName +"! Complete as missões apresentadas abaixo:";
         // display missions
         SetMission();
+
+        if(ProgressBar.missionControl != 0) {
+            missionIndex = ProgressBar.missionControl;
+            GetReward(missionIndex);
+        }
     }
 
     // Update quantity of fishes collected in rewards in menu
@@ -41,12 +49,6 @@ public class Menu : MonoBehaviour
     // Function called when button start is pressed
     public void ConnectMindwave() {
         sceneControl = 1;
-        SceneManager.LoadScene("ConnectHeadset");
-    }
-
-    // Function called when button reward is pressed
-    public void CollectReward() {
-        sceneControl = 2;
         SceneManager.LoadScene("ConnectHeadset");
     }
 
@@ -82,11 +84,17 @@ public class Menu : MonoBehaviour
         GameManager.gm.Save();
     }
 
+    // Function called when button reward is pressed
+    public void CollectReward(int index) {
+        sceneControl = 2;
+        missionIndex = index;
+        SceneManager.LoadScene("ConnectHeadset");
+    }
+
     // Function called in button that collect reward
     // if collected reward, call function GenerateMission that set new mission to the game
     // and update total of fishes collected in rewards
-    public void GetReward(int missionIndex)
-    {
+    public void GetReward(int missionIndex) {
         GameManager.gm.coins += GameManager.gm.GetMission(missionIndex).reward;
         UpdateCoins(GameManager.gm.coins);
         rewardButton[missionIndex].SetActive(false);
