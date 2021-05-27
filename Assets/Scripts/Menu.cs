@@ -30,8 +30,12 @@ public class Menu : MonoBehaviour
         // display missions
         SetMission();
 
-        if(ProgressBar.missionControl != 0) {
+        Debug.Log("Entrou");
+
+        if(ProgressBar.missionControl != -1) {
+            Debug.Log("Entrou");
             missionIndex = ProgressBar.missionControl;
+            Debug.Log("Index da missão: " + missionIndex);
             GetReward(missionIndex);
         }
     }

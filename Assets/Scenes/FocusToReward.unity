@@ -440,7 +440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.37254903, g: 0.37254903, b: 0.37254903, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -571,8 +571,10 @@ MonoBehaviour:
   progressText: {fileID: 1863844865}
   decrementProgress: {fileID: 21300086, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
   incrementProgress: {fileID: 21300084, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
+  successProgress: {fileID: 21300102, guid: e1a536f74c7ef384a8d7132148ace0c8, type: 3}
   btnCollect: {fileID: 762374584}
-  m_Controller: {fileID: 0}
+  imageChild: []
+  imageParent: {fileID: 0}
 --- !u!1 &762374584
 GameObject:
   m_ObjectHideFlags: 0

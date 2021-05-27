@@ -13,18 +13,24 @@ public class ProgressBar : MonoBehaviour {
     // Progress bar variables
     public Image mask; // Background image used in progress bar
     private float maximum = 100; // Maximum value of progress bar
-    private float current = 5; // Current value of progress bar
+    private float current = 15; // Current value of progress bar
     private bool getMaximum = false;
     public Text progressText;
     public Sprite decrementProgress;
     public Sprite incrementProgress;
+    public Sprite successProgress;
 
     // Button to collect reward
     public GameObject btnCollect;
-    public static int missionControl = 0;
+    public static int missionControl = -1;
 
     // Mindwave controller variables
     private MindwaveDataModel m_MindwaveData;
+
+
+    // Variables for change mask sprite of progress bar
+    public Image[] imageChild;
+    public Image imageParent;
 
     // Start is called before the first frame update
     void Start() {
@@ -34,6 +40,11 @@ public class ProgressBar : MonoBehaviour {
         btnCollect.SetActive(false);
 
         missionControl = Menu.missionIndex;
+
+        Debug.Log("Index da missão: " + missionControl);
+
+        imageParent = GameObject.Find("Progress Bar").GetComponent<Image>();
+        imageChild = imageParent.GetComponentsInChildren<Image>();
     }
 
     // Update is called once per frame
@@ -44,6 +55,7 @@ public class ProgressBar : MonoBehaviour {
     // Calculate progress
     void GetCurrentFill() {
         if(current >= maximum) {
+            imageChild[2].sprite = successProgress;
             progressText.text = "Parabéns, você conseguiu! Colete sua recompensa apertando no botão abaixo";
             getMaximum = true;
             mask.fillAmount = maximum;
@@ -76,21 +88,17 @@ public class ProgressBar : MonoBehaviour {
         if(!getMaximum) {
             if(attention > 60) {
                 progressText.text = "Muito bem, continue focando na barra";
-                GetComponent<Image>().color = Color.white;
-                //mask.sprite = incrementProgress;
+                imageChild[2].sprite = incrementProgress;
                 current += 5;
             } else {
                 progressText.text = "Volte a focar no crescimento da barra";
                 if(current > 5) {
-                    current -= 1; //TODO: mudar cor quando aumenta e abaixa e sprite do progress bar
-                    GetComponent<Image>().color = Color.red;
-                    //Image test = GameObject.Find("Mask").GetComponent<Image>();
-                    //test.sprite = decrementProgress;
+                    current -= 1;
+                    imageChild[2].sprite = decrementProgress;
                 }
             }
         } else {
             current = maximum; 
-            GetComponent<Image>().color = Color.green;
         } 
     }
 
