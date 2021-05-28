@@ -63,6 +63,12 @@ public class Player : MonoBehaviour
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
 
+    // Sound effects
+    private AudioSource audio;
+    public AudioClip impactSound;
+    public AudioClip coinSound;
+    public AudioClip jumpSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +88,9 @@ public class Player : MonoBehaviour
 
         // Add missions
         GameManager.gm.StartMissions();
+
+        // Audio source
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -119,19 +128,14 @@ public class Player : MonoBehaviour
         if (jumping)
         {
             float ratio = (transform.position.z - jumpStart) / jumpLength;
-            if (ratio >= 1)
-            {
+            if (ratio >= 1) {
                 jumping = false; // jump is over
                 anim.SetBool("Jumping", false);
-            }
-            else
-            {
+            } else {
                 // unity's formula for update position in jump
                 verticalTargetPosition.y = Mathf.Sin(ratio * Mathf.PI) * jumpHeight;
             }
-        }
-        else
-        {
+        } else {
             verticalTargetPosition.y = Mathf.MoveTowards(verticalTargetPosition.y, 0, 5 * Time.deltaTime);
         }
 
@@ -187,6 +191,8 @@ public class Player : MonoBehaviour
             //anim.SetFloat("JumpSpeed", speed / jumpLength);
             anim.SetBool("Jumping", true);
             anim.Play("Jump");
+            audio.clip = jumpSound;
+            audio.Play();
             jumping = true;
         }
     }
@@ -217,6 +223,8 @@ public class Player : MonoBehaviour
             } else {
                 coins++; // add one coin to the sum
             }
+            audio.clip = coinSound;
+            audio.Play();
             uiManager.UpdateCoins(coins);
             other.transform.parent.gameObject.SetActive(false);
         }
@@ -224,6 +232,8 @@ public class Player : MonoBehaviour
         if (invencible) return;
 
         if (other.CompareTag("Obstacle")) {
+            audio.clip = impactSound;
+            audio.Play();
             currentLife--;
             uiManager.UpdateLives(currentLife);
             //anim.SetTrigger("Hit");

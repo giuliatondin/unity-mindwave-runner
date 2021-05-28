@@ -25,8 +25,7 @@ public class Player_dataLog : MonoBehaviour
             //File.WriteAllText(path, "attention velocity\n");
         }
         //Content of the file
-        if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl)
-        {
+        if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && Player.speed > 0)  {
             dataControl = m_MindwaveData.eegPower.delta;
             // Add text to file
             string content = m_MindwaveData.eSense.attention.ToString() + " " + m_MindwaveData.eSense.meditation.ToString() + " " + m_MindwaveData.eegPower.delta.ToString() + " " + m_MindwaveData.eegPower.theta.ToString() + " " + Player.speed + " " + "\n";
