@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
     private MindwaveDataModel _Data;
 
     // Sound effects
-    private AudioSource audio;
+    private AudioSource soundEffect;
     public AudioClip impactSound;
     public AudioClip coinSound;
     public AudioClip jumpSound;
@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
         GameManager.gm.StartMissions();
 
         // Audio source
-        audio = GetComponent<AudioSource>();
+        soundEffect = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -191,8 +191,8 @@ public class Player : MonoBehaviour
             //anim.SetFloat("JumpSpeed", speed / jumpLength);
             anim.SetBool("Jumping", true);
             anim.Play("Jump");
-            audio.clip = jumpSound;
-            audio.Play();
+            soundEffect.clip = jumpSound;
+            soundEffect.Play();
             jumping = true;
         }
     }
@@ -223,8 +223,8 @@ public class Player : MonoBehaviour
             } else {
                 coins++; // add one coin to the sum
             }
-            audio.clip = coinSound;
-            audio.Play();
+            soundEffect.clip = coinSound;
+            soundEffect.Play();
             uiManager.UpdateCoins(coins);
             other.transform.parent.gameObject.SetActive(false);
         }
@@ -232,11 +232,10 @@ public class Player : MonoBehaviour
         if (invencible) return;
 
         if (other.CompareTag("Obstacle")) {
-            audio.clip = impactSound;
-            audio.Play();
+            soundEffect.clip = impactSound;
+            soundEffect.Play();
             currentLife--;
             uiManager.UpdateLives(currentLife);
-            //anim.SetTrigger("Hit");
             anim.SetBool("Hit", true);
             anim.Play("Hit");
             speed = 0; 

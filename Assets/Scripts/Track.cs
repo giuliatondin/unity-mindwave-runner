@@ -76,15 +76,21 @@ public class Track : MonoBehaviour
         }
     }
 
+    // Ensures good distribution of coins in lanes
     void CoinsInLane() {
+        int aux = -2;
         for(int i = 0; i < newCoins.Count; i++){
             int randomLane = Random.Range(-1, 2);
-            int numCoinsInLane = (int)Random.Range(numberCoinsInLane.x, numberCoinsInLane.y);
+            if(aux == randomLane && randomLane == -1) randomLane = Random.Range(0, 2);  
+            else if(aux == randomLane && randomLane == 0) randomLane = -1;
+            else if(aux == randomLane && randomLane == 1) randomLane = Random.Range(-1, 1);
+            int numCoinsInLane = (int)Random.Range(numberCoinsInLane.x, numberCoinsInLane.y); // min and max of consecutive coins in one lane
             for(int j = 0; j < numCoinsInLane; j++) {
                 newCoins[i].GetComponent<ChangeLane>().PositionLane(randomLane);
                 i++;
                 if(i == newCoins.Count) return;
             }
+            aux = randomLane;
         }
     }
 

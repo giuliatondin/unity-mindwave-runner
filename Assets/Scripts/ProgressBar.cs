@@ -85,7 +85,7 @@ public class ProgressBar : MonoBehaviour {
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
         if(!getMaximum) {
-            if(attention > 20) {
+            if(attention > 60) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
@@ -102,7 +102,6 @@ public class ProgressBar : MonoBehaviour {
     }
 
     public void EndActivity() {
-        //MindwaveManager.Instance.Controller.Disconnect();
         SceneManager.LoadScene("Menu");
     }
 

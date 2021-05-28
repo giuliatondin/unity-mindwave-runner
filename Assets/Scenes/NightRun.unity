@@ -1776,7 +1776,7 @@ MonoBehaviour:
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
   numberOfCoins: {x: 50, y: 80}
   newCoins: []
-  numberCoinsInLane: {x: 3, y: 5}
+  numberCoinsInLane: {x: 1, y: 10}
 --- !u!65 &725461671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2149,7 +2149,7 @@ MonoBehaviour:
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
   numberOfCoins: {x: 30, y: 80}
   newCoins: []
-  numberCoinsInLane: {x: 3, y: 5}
+  numberCoinsInLane: {x: 1, y: 10}
 --- !u!4 &860378888
 Transform:
   m_ObjectHideFlags: 0
