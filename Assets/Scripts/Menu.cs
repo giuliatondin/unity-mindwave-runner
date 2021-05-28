@@ -27,15 +27,12 @@ public class Menu : MonoBehaviour
         // display user name in menu
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Olá, " + Login.userName +"! Complete as missões apresentadas abaixo:";
+        
         // display missions
         SetMission();
 
-        Debug.Log("Entrou");
-
         if(ProgressBar.missionControl != -1) {
-            Debug.Log("Entrou");
             missionIndex = ProgressBar.missionControl;
-            Debug.Log("Index da missão: " + missionIndex);
             GetReward(missionIndex);
         }
     }

@@ -1768,9 +1768,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1000013842435444, guid: a9b51c81c20d09b49a078e5821bb9d58, type: 3}
-  - {fileID: 1000010256476064, guid: 39c9e0746ca1a4b4995befba3266d4f6, type: 3}
+  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
   - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
+  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
@@ -2141,9 +2141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 100000, guid: 529c51c768abc864686cb3e8ab728e7b, type: 3}
-  - {fileID: 100000, guid: 4187050017b3e1443b1148841c6d2d3e, type: 3}
-  - {fileID: 100000, guid: abc8ad5de5d2f87499bfe17f00898801, type: 3}
+  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
+  - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
+  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
@@ -3376,7 +3376,6 @@ MonoBehaviour:
   laneSpeed: 10
   jumpLength: 7.5
   jumpHeight: 2
-  slideLength: 10
   maxLife: 3
   minSpeed: 10
   maxSpeed: 50

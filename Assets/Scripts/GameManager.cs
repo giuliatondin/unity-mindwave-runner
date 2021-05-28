@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     // Path to save file of game data
     private string folderPath;
     private string filePath;
-
+    
     // Function to save data
     public void Save()
     {

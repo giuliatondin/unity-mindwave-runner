@@ -91,7 +91,6 @@ public class Track : MonoBehaviour
     // Repeating scenario
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
-            //other.GetComponent<Player>().SpeedControl();
             transform.position = new Vector3(0, 0, transform.position.z + 379 * 2);
             obstaclesControl += 3;
             if(obstaclesControl > numberOfObstacles.y) obstaclesControl = numberOfObstacles.y;

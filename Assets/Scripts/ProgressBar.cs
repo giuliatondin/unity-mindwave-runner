@@ -27,7 +27,6 @@ public class ProgressBar : MonoBehaviour {
     // Mindwave controller variables
     private MindwaveDataModel m_MindwaveData;
 
-
     // Variables for change mask sprite of progress bar
     public Image[] imageChild;
     public Image imageParent;
@@ -40,8 +39,6 @@ public class ProgressBar : MonoBehaviour {
         btnCollect.SetActive(false);
 
         missionControl = Menu.missionIndex;
-
-        Debug.Log("Index da missão: " + missionControl);
 
         imageParent = GameObject.Find("Progress Bar").GetComponent<Image>();
         imageChild = imageParent.GetComponentsInChildren<Image>();
@@ -78,7 +75,9 @@ public class ProgressBar : MonoBehaviour {
         } else {
             if(attentionAux != attention) {
                 attention = m_MindwaveData.eSense.attention;
-                GetCurrentFill();
+                if(!getMaximum) {
+                    GetCurrentFill();
+                }
             }
         }
     }
@@ -86,7 +85,7 @@ public class ProgressBar : MonoBehaviour {
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
         if(!getMaximum) {
-            if(attention > 60) {
+            if(attention > 20) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
@@ -103,7 +102,11 @@ public class ProgressBar : MonoBehaviour {
     }
 
     public void EndActivity() {
-        MindwaveManager.Instance.Controller.Disconnect();
+        //MindwaveManager.Instance.Controller.Disconnect();
         SceneManager.LoadScene("Menu");
+    }
+
+    public void CallMenu() {
+        GameManager.gm.EndRun();
     }
 }

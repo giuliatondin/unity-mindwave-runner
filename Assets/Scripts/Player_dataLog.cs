@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
+// FIXME: When not in nightrun or focustoreward scene, don't record data
+
 public class Player_dataLog : MonoBehaviour
 {
     private string folderPath;

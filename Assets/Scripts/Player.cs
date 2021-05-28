@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
     private BoxCollider boxCollider;
 
     // Variables to make character slide
-    private bool sliding = false;
-    private float slideStart;
-    public float slideLength;
+    // private bool sliding = false;
+    // private float slideStart;
+    // public float slideLength;
     private Vector3 boxColliderSize;
 
     // Variables to make character collide and lose life
@@ -111,10 +111,10 @@ public class Player : MonoBehaviour
         {
             Jump();
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Slide();
-        }
+        // else if (Input.GetKeyDown(KeyCode.DownArrow))
+        // {
+        //     Slide();
+        // }
 
         if (jumping)
         {
@@ -135,16 +135,16 @@ public class Player : MonoBehaviour
             verticalTargetPosition.y = Mathf.MoveTowards(verticalTargetPosition.y, 0, 5 * Time.deltaTime);
         }
 
-        if (sliding)
-        {
-            float ratio = (transform.position.z - slideStart) / slideLength;
-            if (ratio >= 1)
-            {
-                sliding = false; // slide is over
-                anim.SetBool("Sliding", false);
-                boxCollider.size = boxColliderSize;
-            }
-        }
+        // if (sliding)
+        // {
+        //     float ratio = (transform.position.z - slideStart) / slideLength;
+        //     if (ratio >= 1)
+        //     {
+        //         sliding = false; // slide is over
+        //         anim.SetBool("Sliding", false);
+        //         boxCollider.size = boxColliderSize;
+        //     }
+        // }
 
         Vector3 targetPosition = new Vector3(verticalTargetPosition.x, verticalTargetPosition.y, transform.position.z);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, laneSpeed * Time.deltaTime);
@@ -192,26 +192,31 @@ public class Player : MonoBehaviour
     }
 
     // Make character slide
-    void Slide()
-    {
-        if (!jumping && !sliding)
-        {
-            slideStart = transform.position.z;
-            anim.SetFloat("JumpSpeed", speed / slideLength);
-            anim.SetBool("Sliding", true);
-            // decrease size of box collider
-            Vector3 newSize = boxCollider.size;
-            newSize.y = newSize.y / 2;
-            boxCollider.size = newSize; // update all values of vector
-            sliding = true;
-        }
-    }
+    // void Slide()
+    // {
+    //     if (!jumping && !sliding)
+    //     {
+    //         slideStart = transform.position.z;
+    //         anim.SetFloat("JumpSpeed", speed / slideLength);
+    //         anim.SetBool("Sliding", true);
+    //         // decrease size of box collider
+    //         Vector3 newSize = boxCollider.size;
+    //         newSize.y = newSize.y / 2;
+    //         boxCollider.size = newSize; // update all values of vector
+    //         sliding = true;
+    //     }
+    // }
 
     // Make character collide with obstacles
     private void OnTriggerEnter(Collider other) {
         // Compare if object collided is a coin
         if (other.CompareTag("Coin")) {
-            coins++;
+            if(attention >= 80) {
+                coins += 2; // add 2 coins to the sum, bonus if user have elevated attention!
+                Debug.Log("Você conseguiu um bônus!");
+            } else {
+                coins++; // add one coin to the sum
+            }
             uiManager.UpdateCoins(coins);
             other.transform.parent.gameObject.SetActive(false);
         }
@@ -278,7 +283,6 @@ public class Player : MonoBehaviour
         if(isHit) {
             speed = 0;
         } else {
-            // TODO: Bonus nas moedas se atenção maior que 80
             if(attention > 80) {
                 speed *= 1.0005f;
             } else if(attention > 60 && attention < 80) {

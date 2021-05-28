@@ -51,25 +51,28 @@ public class MindwaveHandler : MonoBehaviour
     public void ConnectMindwave() {
         // If Mindwave Headset send data, the button to start next scene is activate
         if (m_MindwaveData.eegPower.delta > 0) {
-            waitDescriptionText.text = "Conexão estabelecida"; // TODO: Add retry if connect failed
+            waitDescriptionText.text = "Conexão estabelecida"; 
             btnStart.SetActive(true);
-        }
+        } 
 
         if(MindwaveController.isTimeout) {
+            waitDescriptionText.text = "Falha na conexão";
             btnRetry.SetActive(true);
         }  
     }
 
     // Function to change to scene
     public void ChangeScene() {
+        btnStart.SetActive(false);
         if(Menu.sceneControl == 1) GameManager.gm.StartRun();
         else if(Menu.sceneControl == 2) GameManager.gm.StartReward();
     }
 
-    // TODO: Parei aqui
+    // Function to retry connection when timeout is true
     public void RetryConnection() {
         MindwaveManager.Instance.Controller.Connect();
         MindwaveController.isTimeout = false;
+        waitDescriptionText.text = "Aguarde a conexão com o headset...";
         btnRetry.SetActive(false);
     }
 
