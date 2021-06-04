@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -68,6 +69,15 @@ public class Player : MonoBehaviour
     public AudioClip impactSound;
     public AudioClip coinSound;
     public AudioClip jumpSound;
+    private bool allowSound = true;
+    public Sprite[] soundSprites;
+    public Image soundButton;
+    public Text soundDescription;
+
+    // Variables of the pause menu
+    public GameObject panelPause;
+    public Button pauseButton;
+    public Text[] missionDescription;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +87,11 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         boxCollider = GetComponent<BoxCollider>();
         boxColliderSize = boxCollider.size;
+
+        // Pause menu elements
+        //soundButton = GameObject.Find("Sound Effects Button").GetComponent<Image>();
+        panelPause.SetActive(false);
+        SetMission(); // Load missions to pause menu
 
         // Change animation
         anim.Play("Run");
@@ -102,23 +117,35 @@ public class Player : MonoBehaviour
         MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
         score += Time.deltaTime * speed;
 
+        // Update in screen values
         uiManager.UpdateScore((int)score);
         uiManager.UpdateAttention((int)attention);
         uiManager.UpdateSpeed((int)speed);
 
         player.SpeedControl();
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            ChangeLane(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            ChangeLane(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jump();
+        // If the game isn't in pause mode, the player can move
+        if(!GameManager.isPaused) {
+            if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+                ChangeLane(-1);
+            } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
+                ChangeLane(1);
+            } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+                Jump();
+            }
+        } 
+
+        // Functions to pause and resume game
+        if (Input.GetKeyDown(KeyCode.Space)){
+            if(GameManager.isPaused) {
+                GameManager.gm.ResumeGame();
+                panelPause.SetActive(false);
+                pauseButton.gameObject.SetActive(true);
+            } else {
+                GameManager.gm.PauseGame();
+                panelPause.SetActive(true);
+                pauseButton.gameObject.SetActive(false);
+            }
         }
         // else if (Input.GetKeyDown(KeyCode.DownArrow))
         // {
@@ -278,10 +305,6 @@ public class Player : MonoBehaviour
         invencible = false;
     }
 
-    void CallMenu() {
-        GameManager.gm.EndRun();
-    }
-
     // Update speed
     public void SpeedControl() {
         if (speed >= maxSpeed) speed = maxSpeed;
@@ -299,6 +322,44 @@ public class Player : MonoBehaviour
             } else {
                 speed /= 1.0005f;
             }
+        }
+    }
+
+    public void CallMenu() {
+        GameManager.gm.EndRun();
+    }
+
+    public void SetMission() {
+        for (int i = 0; i < 2; i++) {
+            MissionBase mission = GameManager.gm.GetMission(i);
+            missionDescription[i].text = mission.GetMissionDescription();
+        }
+        GameManager.gm.Save();
+    }
+
+    public void ControlSound() {
+        if(allowSound) {
+            soundEffect.volume = 0;
+            soundButton.sprite = soundSprites[0];
+            soundDescription.text = "Efeitos sonoros desativados";
+            allowSound = false;
+        } else {
+            soundEffect.volume = 0.5f;
+            soundButton.sprite = soundSprites[1];
+            soundDescription.text = "Efeitos sonoros ativados";
+            allowSound = true;
+        }
+    }
+
+    public void ResumeGame() {
+        if(GameManager.isPaused) {
+            GameManager.gm.ResumeGame();
+            panelPause.SetActive(false);
+            pauseButton.gameObject.SetActive(true);
+        } else {
+            GameManager.gm.PauseGame();
+            panelPause.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
         }
     }
 }

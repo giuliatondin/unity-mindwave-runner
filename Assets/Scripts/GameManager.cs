@@ -34,6 +34,10 @@ public class GameManager : MonoBehaviour
     // Path to save file of game data
     private string folderPath;
     private string filePath;
+
+    // Variables of the pause menu
+    [HideInInspector]
+    public static bool isPaused = false;
     
     // Function to save data
     public void Save()
@@ -165,12 +169,20 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-
     }
 
     // Update is called once per frame
     void Update() {
+    }
 
+    public void PauseGame() {
+        Time.timeScale = 0;
+        isPaused = true;
+    }
+
+    public void ResumeGame() {
+        Time.timeScale = 1;
+        isPaused = false;
     }
 
     public void StartRun() {

@@ -1117,7 +1117,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2022169446}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1277,7 +1277,7 @@ RectTransform:
   m_Children:
   - {fileID: 1519955652}
   m_Father: {fileID: 2022169446}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1329,7 +1329,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2110351740}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
         m_MethodName: ConnectMindwave
         m_Mode: 1
         m_Arguments:
@@ -2134,11 +2134,11 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1441930952}
+  - {fileID: 1201345654}
   - {fileID: 1048118950}
   - {fileID: 156753123}
   - {fileID: 1664296598}
-  - {fileID: 1201345654}
+  - {fileID: 1441930952}
   - {fileID: 1709508160}
   m_Father: {fileID: 0}
   m_RootOrder: 2
