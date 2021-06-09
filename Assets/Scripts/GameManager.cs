@@ -185,8 +185,12 @@ public class GameManager : MonoBehaviour
         isPaused = false;
     }
 
-    public void StartRun() {
+    public void StartRunNight() {
         SceneManager.LoadScene("NightRun");
+    }
+
+    public void StartRunDay() {
+        SceneManager.LoadScene("DayRun");
     }
 
     public void StartReward() {

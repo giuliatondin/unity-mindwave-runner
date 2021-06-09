@@ -82,6 +82,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        GameManager.isPaused = false;
+        
         rb = GetComponent<Rigidbody>();
         player = GetComponent<Player>();
         anim = GetComponentInChildren<Animator>();

@@ -9,10 +9,11 @@ public class Menu : MonoBehaviour
 
     // Reference to the missions descriptions of Game Manager
     public Text[] missionDescription, missionReward, missionProgress;
+    public Image[] missionProgressBar;
 
     // Reference to the reward button
     public GameObject[] rewardButton;
-
+    
     // Text that show in menu quantity of fishes
     public Text coinsText;
 
@@ -22,12 +23,20 @@ public class Menu : MonoBehaviour
     // Variable that control wich mission is select to collect reward
     public static int missionIndex;
 
+    // Variable that control wich track is select
+    [HideInInspector]
+    public static int trackIndex = 0;
+
+    // Reference to tracks panel
+    public Button[] tracksButton;
+    public Image[] tracksButtonBorder; 
+
     // Start is called before the first frame update
     void Start() {
         // display user name in menu
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
-        welcome.text = "Olá, " + Login.userName +"! Complete as missões apresentadas abaixo:";
-        
+        welcome.text = "Complete as missões apresentadas abaixo:";
+
         // display missions
         SetMission();
 
@@ -58,13 +67,6 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Login");
     }
 
-    public void SetName(string name)
-    {
-        Text userName = GameObject.Find("Welcome").GetComponent<Text>();
-        userName.text = "Boas vindas, " + name;
-        Debug.Log(userName.text);
-    }
-
     public void SetMission()
     {
         // Select 2 missions
@@ -73,9 +75,14 @@ public class Menu : MonoBehaviour
             MissionBase mission = GameManager.gm.GetMission(i);
             missionDescription[i].text = mission.GetMissionDescription();
             missionReward[i].text = "Recompensa: " + mission.reward;
+
             missionProgress[i].text = mission.progress + mission.currentProgress + " / " + mission.max;
-            if (mission.GetMissionComplete())
-            {
+
+            float fillAmount = ((float)mission.progress + (float)mission.currentProgress) / (float)mission.max;
+            if(fillAmount > 1) missionProgressBar[i].fillAmount = 1;
+            else missionProgressBar[i].fillAmount = fillAmount;
+
+            if (mission.GetMissionComplete()) {
                 rewardButton[i].SetActive(true);
             }
         }
@@ -100,5 +107,17 @@ public class Menu : MonoBehaviour
         UpdateCoins(GameManager.gm.coins);
         rewardButton[missionIndex].SetActive(false);
         GameManager.gm.GenerateMission(missionIndex);
+    }
+
+    public void SetTrack(int index) {
+        if(index == 0) {
+            trackIndex = 0;
+            tracksButtonBorder[0].gameObject.SetActive(true);
+            tracksButtonBorder[1].gameObject.SetActive(false);
+        } else if(index == 1)  {
+            trackIndex = 1;
+            tracksButtonBorder[1].gameObject.SetActive(true);
+            tracksButtonBorder[0].gameObject.SetActive(false);
+        }
     }
 }
