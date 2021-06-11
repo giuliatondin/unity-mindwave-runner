@@ -19,6 +19,7 @@ public class PlayerData
     public int[] currentProgress;
     public int[] reward;
     public string[] missionType;
+    public int[] tracksCost;
 }
 
 public class GameManager : MonoBehaviour
@@ -31,6 +32,9 @@ public class GameManager : MonoBehaviour
     // Coins collected in one game
     public int coins;
 
+    // Tracks availables in one game
+    public int[] tracksCost;
+
     // Path to save file of game data
     private string folderPath;
     private string filePath;
@@ -40,8 +44,7 @@ public class GameManager : MonoBehaviour
     public static bool isPaused = false;
     
     // Function to save data
-    public void Save()
-    {
+    public void Save() {
         BinaryFormatter bf = new BinaryFormatter();
         // create file in set path
         FileStream file = File.Create(filePath);
@@ -57,23 +60,28 @@ public class GameManager : MonoBehaviour
         data.currentProgress = new int[2];
         data.reward = new int[2];
         data.missionType = new string[2];
+        data.tracksCost = new int[tracksCost.Length]; 
+
         // save each value of each index in data object
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             data.max[i] = missions[i].max;
             data.progress[i] = missions[i].progress;
             data.currentProgress[i] = missions[i].currentProgress;
             data.reward[i] = missions[i].reward;
-            data.missionType[i] = missions[i].missionType.ToString();
+            data.missionType[i] = missions[i].missionType.ToString(); 
+        } 
+
+        for(int i  = 0; i < tracksCost.Length; i++) {
+            data.tracksCost[i] = tracksCost[i];
         }
+
         // send all data content to file
         bf.Serialize(file, data);
         file.Close();
     }
 
     // Function to load data from file
-    void Load()
-    {
+    void Load() {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Open(filePath, FileMode.Open);
         // set all content of file in object data
@@ -83,8 +91,7 @@ public class GameManager : MonoBehaviour
         // set data of file in variables of the game
         coins = data.coins;
 
-        for (int i = 0; i < 2; i++)
-        {
+        for (int i = 0; i < 2; i++) {
             GameObject newMission = new GameObject("Mission" + i);
             // set game manager as parent of mission
             newMission.transform.SetParent(transform);
@@ -110,6 +117,11 @@ public class GameManager : MonoBehaviour
             missions[i].currentProgress = data.currentProgress[i];
             missions[i].reward = data.reward[i];
         }
+
+        for(int i = 0; i < tracksCost.Length; i++) {
+            tracksCost[i] = data.tracksCost[i];
+        }
+        
     }
 
     // Awake is called before start

@@ -28,8 +28,13 @@ public class Menu : MonoBehaviour
     public static int trackIndex = 0;
 
     // Reference to tracks panel
-    public Button[] tracksButton;
-    public Image[] tracksButtonBorder; 
+    public Image[] tracks;
+    public Text tracksCostText;
+    public GameObject trackBlockText;
+    public GameObject buyTrackPanel;
+    public GameObject confirmBuyButton;
+    public GameObject[] buyTrackWarnings;
+    private bool buyTrackIsOpen = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -112,12 +117,56 @@ public class Menu : MonoBehaviour
     public void SetTrack(int index) {
         if(index == 0) {
             trackIndex = 0;
-            tracksButtonBorder[0].gameObject.SetActive(true);
-            tracksButtonBorder[1].gameObject.SetActive(false);
         } else if(index == 1)  {
             trackIndex = 1;
-            tracksButtonBorder[1].gameObject.SetActive(true);
-            tracksButtonBorder[0].gameObject.SetActive(false);
         }
+    }
+
+    public void ChangeTrack(int index) {
+        trackIndex += index;
+        if(trackIndex >= tracks.Length) trackIndex = 0;
+        else if(trackIndex <= 0) trackIndex = tracks.Length - 1;
+
+        for(int i = 0; i < tracks.Length; i++) {
+            if(i == trackIndex) tracks[i].gameObject.SetActive(true);
+            else tracks[i].gameObject.SetActive(false);
+        }
+
+        string cost = "";
+        if(GameManager.gm.tracksCost[trackIndex] != 0) {
+            cost = GameManager.gm.tracksCost[trackIndex].ToString();
+            trackBlockText.gameObject.SetActive(true);
+            tracks[trackIndex].color = new Color32(255, 255, 255, 100);
+        } else if(GameManager.gm.tracksCost[trackIndex] == 0) {
+            trackBlockText.gameObject.SetActive(false);
+            tracks[trackIndex].color = new Color32(255, 255, 255, 255);
+        }
+        tracksCostText.text = cost;
+    
+    }
+
+    // Function to open and close buy track panel
+    public void OpenBuyTrackPanel() {
+        if(buyTrackIsOpen) {
+            buyTrackPanel.SetActive(false);
+            buyTrackIsOpen = false;
+        } else {
+            buyTrackPanel.SetActive(true);
+            buyTrackIsOpen = true;
+            if(GameManager.gm.tracksCost[trackIndex] <= GameManager.gm.coins) {
+                buyTrackWarnings[0].SetActive(true);
+                buyTrackWarnings[1].SetActive(false);
+            } else { 
+                buyTrackWarnings[0].SetActive(false);
+                buyTrackWarnings[1].SetActive(true);
+            }
+        }
+    }
+
+    // Function to get coins to buy track
+    public void BuyTrack() {
+        GameManager.gm.coins -= GameManager.gm.tracksCost[trackIndex];
+        GameManager.gm.tracksCost[trackIndex] = 0;
+        GameManager.gm.Save();
     }
 }

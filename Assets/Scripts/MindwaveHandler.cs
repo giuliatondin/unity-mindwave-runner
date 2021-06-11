@@ -64,8 +64,8 @@ public class MindwaveHandler : MonoBehaviour
     // Function to change to scene
     public void ChangeScene() {
         btnStart.SetActive(false);
-        if(Menu.sceneControl == 1 && Menu.trackIndex == 0) GameManager.gm.StartRunNight();
-        else if(Menu.sceneControl == 1 && Menu.trackIndex == 1) GameManager.gm.StartRunDay();
+        if(Menu.sceneControl == 1 && Menu.trackIndex == 0) GameManager.gm.StartRunDay();
+        else if(Menu.sceneControl == 1 && Menu.trackIndex == 1) GameManager.gm.StartRunNight();
         else if(Menu.sceneControl == 2) GameManager.gm.StartReward();
     }
 

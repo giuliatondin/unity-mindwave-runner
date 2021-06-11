@@ -85,7 +85,7 @@ public class ProgressBar : MonoBehaviour {
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
         if(!getMaximum) {
-            if(attention > 60) {
+            if(attention > 50) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;

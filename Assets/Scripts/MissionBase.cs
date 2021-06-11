@@ -5,8 +5,7 @@ using UnityEngine;
 // TODO: Criar missões para jogo
 
 // Help in mission selection
-public enum MissionType
-{
+public enum MissionType {
     SingleRun, TotalMeters, FishesSingleRun
 }
 
@@ -20,22 +19,22 @@ public abstract class MissionBase : MonoBehaviour
     public int currentProgress;
     public MissionType missionType;
 
+    public int[] tracks = {1, 0};
+
     // This functions are implemented in each mission's script
     public abstract void Created();
     public abstract string GetMissionDescription();
     public abstract void RunStart();
     public abstract void Update();
 
-    public bool GetMissionComplete()
-    {
+    public bool GetMissionComplete() {
         if ((progress + currentProgress) >= max) return true;
         else return false;
     }
 }
 
 // Mission 1: Run [1000, 2000...] meters in one race
-public class SingleRun : MissionBase
-{
+public class SingleRun : MissionBase {
     public override void Created()
     {
         missionType = MissionType.SingleRun;
@@ -47,13 +46,11 @@ public class SingleRun : MissionBase
         progress = 0;
     }
 
-    public override string GetMissionDescription()
-    {
+    public override string GetMissionDescription() {
         return "Corra " + max + "m em uma corrida";
     }
 
-    public override void RunStart()
-    {
+    public override void RunStart() {
         progress = 0;
         player = FindObjectOfType<Player>();
     }
