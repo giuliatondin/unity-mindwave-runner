@@ -27,6 +27,10 @@ public class Menu : MonoBehaviour
     [HideInInspector]
     public static int trackIndex = 0;
 
+    // Variable that control the game manager and close of game
+    [HideInInspector]
+    public static bool gameStart = true;
+
     // Reference to tracks panel
     public Image[] tracks;
     public Text tracksCostText;
@@ -38,9 +42,12 @@ public class Menu : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        gameStart = true;
         // display user name in menu
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Complete as missões apresentadas abaixo:";
+
+        coinsText.text = GameManager.gm.coins.ToString();
 
         // display missions
         SetMission();
@@ -49,6 +56,7 @@ public class Menu : MonoBehaviour
             missionIndex = ProgressBar.missionControl;
             GetReward(missionIndex);
         }
+        //Debug.Log(Login.userName);
     }
 
     // Update quantity of fishes collected in rewards in menu
@@ -69,6 +77,9 @@ public class Menu : MonoBehaviour
 
     // Function called when button cancel is pressed
     public void CloseGame() {
+        GameManager.gm.Save();
+        GameManager.gm.CloseGame();
+        // MindwaveHandler.mh.DisconnectMindwave();
         SceneManager.LoadScene("Login");
     }
 
@@ -112,6 +123,7 @@ public class Menu : MonoBehaviour
         UpdateCoins(GameManager.gm.coins);
         rewardButton[missionIndex].SetActive(false);
         GameManager.gm.GenerateMission(missionIndex);
+        ProgressBar.missionControl = -1;
     }
 
     public void SetTrack(int index) {

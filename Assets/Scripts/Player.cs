@@ -319,11 +319,11 @@ public class Player : MonoBehaviour
             speed = 0;
         } else {
             if(attention > 80) {
-                speed *= 1.0005f;
+                speed += 0.05f;
             } else if(attention > 60 && attention < 80) {
-                speed *= 1.0001f;
+                speed += 0.02f;
             } else {
-                speed /= 1.0005f;
+                speed -= 0.05f;
             }
         }
     }

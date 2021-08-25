@@ -27,9 +27,9 @@ public class MindwaveHandler : MonoBehaviour
         sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
         //blinkControllerText = GameObject.Find("Blink Controller Text").GetComponent<Text>();
 
-        // Change description text depending of the chosen scene //TODO: Define text description
-        if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Coloque o headset e prepare-se para correr! Coloque o headset e prepare-se para correr!";
-        else if(Menu.sceneControl == 2) sceneDescription.text = "Coloque o headset e foque para receber a recompensa! Coloque o headset e foque para receber a recompensa! Coloque o headset e foque para receber a recompensa!";
+        // Change description text depending of the chosen scene 
+        if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Desvie dos obstáculos, colete estrelas e ganhe o dobro de seu valor ao manter um nível elevado de atenção no jogo. Então, vamos lá, concentrAÇÃO!";
+        else if(Menu.sceneControl == 2) sceneDescription.text = "Coloque o headset e prepare-se para a recompensa! Você precisa concentrar-se no crescimento da barra de progresso para completá-la e assim receber sua recompensa. As moedas estão te esperando, então vamos lá!";
     }
 
     // Update is called once per frame
@@ -60,6 +60,10 @@ public class MindwaveHandler : MonoBehaviour
             btnRetry.SetActive(true);
         }  
     }
+
+    // public void DisconnectMindwave() {
+    //     MindwaveManager.Instance.Controller.Disconnect();
+    // }
 
     // Function to change to scene
     public void ChangeScene() {

@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void UpdateScore(int score){
-        scoreText.text = "Score: " + score + "m";
+        scoreText.text = "Distância: " + score + "m";
     }
 
     public void UpdateAttention(int attention) {

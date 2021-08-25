@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class ProgressBar : MonoBehaviour {
+
     // Attention variables
     private float attention = 0; // Attention value to set the progress
     private bool progressControl = false; // Control the progress of the bar regarding attention
@@ -13,7 +14,8 @@ public class ProgressBar : MonoBehaviour {
     // Progress bar variables
     public Image mask; // Background image used in progress bar
     private float maximum = 100; // Maximum value of progress bar
-    private float current = 15; // Current value of progress bar
+    [HideInInspector]
+    public static float current = 0; // Current value of progress bar
     private bool getMaximum = false;
     public Text progressText;
     public Sprite decrementProgress;
@@ -85,13 +87,13 @@ public class ProgressBar : MonoBehaviour {
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
         if(!getMaximum) {
-            if(attention > 50) {
+            if(attention > 60) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
             } else {
                 progressText.text = "Volte a focar no crescimento da barra";
-                if(current > 5) {
+                if(current > 0) {
                     current -= 1;
                     imageChild[2].sprite = decrementProgress;
                 }
@@ -101,6 +103,7 @@ public class ProgressBar : MonoBehaviour {
         } 
     }
 
+    // FIXME: Quando fecha com o botão antes de preencher todo bloco, apresenta mensagem de erro
     public void EndActivity() {
         SceneManager.LoadScene("Menu");
     }

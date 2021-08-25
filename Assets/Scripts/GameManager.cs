@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     // Coins collected in one game
     public int coins;
 
+    public string userName = Login.userName;
+
     // Tracks availables in one game
     public int[] tracksCost;
 
@@ -42,6 +44,9 @@ public class GameManager : MonoBehaviour
     // Variables of the pause menu
     [HideInInspector]
     public static bool isPaused = false;
+
+    [HideInInspector]
+    public static bool isClosed = false;
     
     // Function to save data
     public void Save() {
@@ -125,19 +130,16 @@ public class GameManager : MonoBehaviour
     }
 
     // Awake is called before start
-    private void Awake()
-    {
-        if (gm == null)
-        {
+    private void Awake() {
+        if (gm == null) {
             gm = this;
         }
-        else if (gm != this)
-        {
+        else if (gm != this) {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
 
-        // Create path to save folder with user data
+        //Create path to save folder with user data
         folderPath = Application.dataPath + "/Users/" + Login.userName;
 
         // Check if user's folder already exists, if not, create new user
@@ -180,11 +182,15 @@ public class GameManager : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start() {
+    void Start() {       
     }
 
     // Update is called once per frame
     void Update() {
+    }
+
+    public void CloseGame() {
+        Destroy(gameObject);
     }
 
     public void PauseGame() {

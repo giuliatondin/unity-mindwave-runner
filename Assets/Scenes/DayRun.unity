@@ -412,6 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
+  userName: 
   tracksCost: 00000000e8030000
 --- !u!4 &130223859
 Transform:
@@ -1312,7 +1313,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 04cb66914ee1bec45bfbed9f88f6c511, type: 3}
-    m_FontSize: 18
+    m_FontSize: 15
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -1323,7 +1324,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: "dist\xE2ncia: 0"
 --- !u!222 &470964315
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1348,7 +1349,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 119.3, y: -364.6}
+  m_AnchoredPosition: {x: 755, y: -82}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &491232078
@@ -1679,7 +1680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &557199462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2160,7 +2161,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &647491272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2431,7 +2432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011653413644, guid: 2d4807022e73aa34ab8f01892dbdfe1d, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4000011653413644, guid: 2d4807022e73aa34ab8f01892dbdfe1d, type: 3}
       propertyPath: m_LocalScale.x
@@ -3215,9 +3216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
-  - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
-  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
+  - {fileID: 1000011769374998, guid: b19a0bd8ede69fe4683dff84150a047b, type: 3}
+  - {fileID: 1000010455400752, guid: 82eb370d70e50344cb6eeb919a1429b8, type: 3}
+  - {fileID: 100000, guid: 89db83d228927234ab3737e12e64660e, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
@@ -3768,9 +3769,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
-  - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
-  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
+  - {fileID: 1000011769374998, guid: b19a0bd8ede69fe4683dff84150a047b, type: 3}
+  - {fileID: 1000010455400752, guid: 82eb370d70e50344cb6eeb919a1429b8, type: 3}
+  - {fileID: 100000, guid: 89db83d228927234ab3737e12e64660e, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
@@ -4256,7 +4257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013039219596, guid: 747e617dac045eb4f9fa9978b75bb475, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4000013039219596, guid: 747e617dac045eb4f9fa9978b75bb475, type: 3}
       propertyPath: m_LocalScale.x
@@ -4546,7 +4547,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 342.8, y: 185.1685}
+  m_AnchoredPosition: {x: 318.8, y: 185.1685}
   m_SizeDelta: {x: 26.2428, y: 29.3736}
   m_Pivot: {x: 1.6467851, y: 0.49999994}
 --- !u!114 &1342720279
@@ -4742,7 +4743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011507138274, guid: 65d6a8c569ebabb48aa95414228089bc, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4000011507138274, guid: 65d6a8c569ebabb48aa95414228089bc, type: 3}
       propertyPath: m_LocalScale.x
@@ -4896,7 +4897,7 @@ MonoBehaviour:
   jumpHeight: 2
   maxLife: 3
   minSpeed: 10
-  maxSpeed: 50
+  maxSpeed: 30
   invencibleTime: 2
   model: {fileID: 402975854}
   coins: 0

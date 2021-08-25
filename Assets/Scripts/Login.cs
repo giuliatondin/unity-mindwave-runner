@@ -12,6 +12,9 @@ public class Login : MonoBehaviour
     public InputField inputUser;
     public GameObject panelLogin;
 
+    [HideInInspector]
+    public static bool actualScene = true;
+
     private void Start() {
         panelLogin.SetActive(false);
         // Login button
@@ -38,6 +41,7 @@ public class Login : MonoBehaviour
     }
 
     private void EnterGame() {
+        actualScene = false;
         this.gameObject.SetActive(false);
         SceneManager.LoadScene("Menu");
     }

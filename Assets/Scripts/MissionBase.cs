@@ -40,7 +40,7 @@ public class SingleRun : MissionBase {
         missionType = MissionType.SingleRun;
         int[] maxValues = { 100, 200, 300, 400 };
         int randomMaxValue = Random.Range(0, maxValues.Length);
-        int[] rewards = { 100, 200, 300, 400 }; // win coins if complete each meters
+        int[] rewards = { 50, 100, 200, 250 }; // win coins if complete each meters
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
         progress = 0;
