@@ -44,9 +44,6 @@ public class GameManager : MonoBehaviour
     // Variables of the pause menu
     [HideInInspector]
     public static bool isPaused = false;
-
-    [HideInInspector]
-    public static bool isClosed = false;
     
     // Function to save data
     public void Save() {

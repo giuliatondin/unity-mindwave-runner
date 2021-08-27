@@ -38,7 +38,7 @@ public class MindwaveManager : MuffinTools.MonoSingleton<MindwaveManager>
 		{
 			base.OnInstanceInit();
 
-			DontDestroyOnLoad(gameObject);
+			//DontDestroyOnLoad(gameObject);
 
 			m_Controller = GetComponent<MindwaveController>();
 			m_Calibrator = GetComponent<MindwaveCalibrator>();

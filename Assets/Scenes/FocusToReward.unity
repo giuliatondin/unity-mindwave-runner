@@ -998,7 +998,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 541326430}
         m_TargetAssemblyTypeName: ProgressBar, Assembly-CSharp
-        m_MethodName: EndActivity
+        m_MethodName: CallMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

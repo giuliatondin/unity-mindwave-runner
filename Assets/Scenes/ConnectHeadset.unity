@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
+  userName: 
   tracksCost: 
 --- !u!4 &633248938
 Transform:
@@ -740,7 +741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c006c2a2e6689e640a099a217d01e22a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 1533906474}
   btnStart: {fileID: 393663725}
   btnRetry: {fileID: 1788423546}
 --- !u!4 &736072144
@@ -843,6 +844,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b889b8912dd04754fb7b7b9fd88113a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1533906474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114159413638650230, guid: 8b4e4ddc023712f44a95397307ccaf60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1533906471}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533906472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e330e73c726a06f4f94b9b0511d4467d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1659817384

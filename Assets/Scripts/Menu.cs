@@ -39,24 +39,23 @@ public class Menu : MonoBehaviour
     public GameObject confirmBuyButton;
     public GameObject[] buyTrackWarnings;
     private bool buyTrackIsOpen = false;
+    public Text trackWarning;
 
     // Start is called before the first frame update
     void Start() {
         gameStart = true;
-        // display user name in menu
+
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Complete as missões apresentadas abaixo:";
 
         coinsText.text = GameManager.gm.coins.ToString();
 
-        // display missions
-        SetMission();
+        SetMission(); // display missions
 
         if(ProgressBar.missionControl != -1) {
             missionIndex = ProgressBar.missionControl;
             GetReward(missionIndex);
         }
-        //Debug.Log(Login.userName);
     }
 
     // Update quantity of fishes collected in rewards in menu
@@ -65,21 +64,30 @@ public class Menu : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-
-    }
+    void Update() {}
 
     // Function called when button start is pressed
     public void ConnectMindwave() {
-        sceneControl = 1;
-        SceneManager.LoadScene("ConnectHeadset");
+        // if track isn't block, load connectheadset scene
+        if(GameManager.gm.tracksCost[trackIndex] == 0) {
+            sceneControl = 1;
+            SceneManager.LoadScene("ConnectHeadset");
+        } else { // if it is, show warning 
+            StartCoroutine(ShowTrackWarning()); 
+        }
+    }
+
+    // 
+    IEnumerator ShowTrackWarning() {
+        trackWarning.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3);
+        trackWarning.gameObject.SetActive(false);
     }
 
     // Function called when button cancel is pressed
     public void CloseGame() {
         GameManager.gm.Save();
         GameManager.gm.CloseGame();
-        // MindwaveHandler.mh.DisconnectMindwave();
         SceneManager.LoadScene("Login");
     }
 

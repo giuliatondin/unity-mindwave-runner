@@ -21,6 +21,7 @@ public class ProgressBar : MonoBehaviour {
     public Sprite decrementProgress;
     public Sprite incrementProgress;
     public Sprite successProgress;
+    private  bool getProgress = true; 
 
     // Button to collect reward
     public GameObject btnCollect;
@@ -53,16 +54,21 @@ public class ProgressBar : MonoBehaviour {
 
     // Calculate progress
     void GetCurrentFill() {
-        if(current >= maximum) {
-            imageChild[2].sprite = successProgress;
-            progressText.text = "Parabéns, você conseguiu! Colete sua recompensa apertando no botão abaixo";
-            getMaximum = true;
-            mask.fillAmount = maximum;
-            btnCollect.SetActive(true); 
+        if(getProgress) {
+            Debug.Log("Entrou");
+            if(current >= maximum) {
+                imageChild[2].sprite = successProgress;
+                progressText.text = "Parabéns, você conseguiu! Colete sua recompensa apertando no botão abaixo";
+                getMaximum = true;
+                mask.fillAmount = maximum;
+                btnCollect.SetActive(true); 
+            } else {
+                GetCurrentAttention();
+                float fillAmount = current/maximum;
+                mask.fillAmount = fillAmount;
+            }
         } else {
-            GetCurrentAttention();
-            float fillAmount = current/maximum;
-            mask.fillAmount = fillAmount;
+            Debug.Log("Saiu");
         }
     }
 
@@ -104,11 +110,9 @@ public class ProgressBar : MonoBehaviour {
     }
 
     // FIXME: Quando fecha com o botão antes de preencher todo bloco, apresenta mensagem de erro
-    public void EndActivity() {
-        SceneManager.LoadScene("Menu");
-    }
-
     public void CallMenu() {
+        getProgress = false;
+        MindwaveManager.Instance.Controller.Disconnect();
         GameManager.gm.EndRun();
     }
 }

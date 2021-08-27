@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     public float minSpeed = 10f;
     public float maxSpeed = 30f;
     private bool invencible = false;
-    static int blinkingValue;
     public float invencibleTime;
     public GameObject model;
     private UIManager uiManager;
@@ -60,7 +59,6 @@ public class Player : MonoBehaviour
     public float attention;
 
     // Mindwave controller
-    private int m_BlinkStrength = 0;
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
 
@@ -114,9 +112,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Mindwave controller blink;
-        // MindwaveManager.Instance.Controller.OnUpdateBlink += OnUpdateBlink;
-
         MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
         score += Time.deltaTime * speed;
 
@@ -184,10 +179,6 @@ public class Player : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, laneSpeed * Time.deltaTime);
     }
 
-    public void OnUpdateBlink(int _BlinkStrength) {
-		m_BlinkStrength = _BlinkStrength;
-	}
-
     // Update attention data
     public void OnUpdateMindwaveData(MindwaveDataModel _Data)
     {
@@ -249,7 +240,7 @@ public class Player : MonoBehaviour
         if (other.CompareTag("Coin")) {
             if(attention >= 80) {
                 coins += 2; // add 2 coins to the sum, bonus if user have elevated attention!
-                Debug.Log("Você conseguiu um bônus!");
+                //Debug.Log("Você conseguiu um bônus!");
             } else {
                 coins++; // add one coin to the sum
             }
@@ -329,6 +320,7 @@ public class Player : MonoBehaviour
     }
 
     public void CallMenu() {
+        //MindwaveManager.Instance.Controller.Disconnect();
         GameManager.gm.EndRun();
     }
 

@@ -11,21 +11,16 @@ public class MindwaveHandler : MonoBehaviour
     // Variables that collect mindwave data
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
-    [SerializeField]
-	private MindwaveController m_Controller;
-    private int m_BlinkStrength = 0;
 
     public GameObject btnStart;
     public GameObject btnRetry;
     private Text waitDescriptionText;
     private Text sceneDescription;
-    private Text blinkControllerText;
 
     // Start is called before the first frame update
     void Start() {
         waitDescriptionText = GameObject.Find("Waiting Text").GetComponent<Text>();
         sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
-        //blinkControllerText = GameObject.Find("Blink Controller Text").GetComponent<Text>();
 
         // Change description text depending of the chosen scene 
         if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Desvie dos obstáculos, colete estrelas e ganhe o dobro de seu valor ao manter um nível elevado de atenção no jogo. Então, vamos lá, concentrAÇÃO!";
@@ -35,18 +30,12 @@ public class MindwaveHandler : MonoBehaviour
     // Update is called once per frame
     void Update() {
         MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
-        MindwaveManager.Instance.Controller.OnUpdateBlink += OnUpdateBlink;
         ConnectMindwave();
-        //BlinkController();
     }
 
     public void OnUpdateMindwaveData(MindwaveDataModel _Data) {
         m_MindwaveData = _Data;
     }
-
-    public void OnUpdateBlink(int _BlinkStrength) {
-		m_BlinkStrength = _BlinkStrength;
-	}
 
     public void ConnectMindwave() {
         // If Mindwave Headset send data, the button to start next scene is activate
@@ -61,10 +50,6 @@ public class MindwaveHandler : MonoBehaviour
         }  
     }
 
-    // public void DisconnectMindwave() {
-    //     MindwaveManager.Instance.Controller.Disconnect();
-    // }
-
     // Function to change to scene
     public void ChangeScene() {
         btnStart.SetActive(false);
@@ -75,17 +60,10 @@ public class MindwaveHandler : MonoBehaviour
 
     // Function to retry connection when timeout is true
     public void RetryConnection() {
+        Debug.Log("Entrou no retry");
         MindwaveManager.Instance.Controller.Connect();
         MindwaveController.isTimeout = false;
         waitDescriptionText.text = "Aguarde a conexão com o headset...";
         btnRetry.SetActive(false);
     }
-
-    // public void BlinkController() {
-    //     if(m_BlinkStrength > 100) {
-    //         blinkControllerText.text = "Piscou forte";
-    //     } else {
-    //         blinkControllerText.text = "Esperando isso funcionar";
-    //     }
-    // }
 }

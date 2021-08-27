@@ -157,6 +157,7 @@ public class MindwaveController : MonoBehaviour
 		/// </summary>
 		private void ConnectToMindwave()
 		{
+			Debug.Log("Conectado");
 			if(m_StreamRoutine == null)
 			{
 				m_TcpClient = new TcpClient(m_TcpHostname, m_TcpPort);
@@ -187,6 +188,7 @@ public class MindwaveController : MonoBehaviour
 		/// </summary>
 		private void DisconnectFromMindwave()
 		{
+			//Debug.Log("Desconectado");
 			if(m_StreamRoutine != null)
 			{
 				StopCoroutine(m_StreamRoutine);
