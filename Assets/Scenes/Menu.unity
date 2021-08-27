@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 99276936}
   - component: {fileID: 99276935}
   m_Layer: 5
-  m_Name: Stars Text
+  m_Name: Coins Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3216,7 +3216,7 @@ GameObject:
   - component: {fileID: 1664296600}
   - component: {fileID: 1664296599}
   m_Layer: 5
-  m_Name: Stars
+  m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3713,7 +3713,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coins: 0
   userName: 
-  tracksCost: 00000000e8030000
+  tracksCost: 0000000090010000
 --- !u!4 &1905019696
 Transform:
   m_ObjectHideFlags: 0

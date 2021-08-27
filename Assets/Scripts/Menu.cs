@@ -188,5 +188,9 @@ public class Menu : MonoBehaviour
         GameManager.gm.coins -= GameManager.gm.tracksCost[trackIndex];
         GameManager.gm.tracksCost[trackIndex] = 0;
         GameManager.gm.Save();
+        coinsText.text = GameManager.gm.coins.ToString();
+        trackBlockText.gameObject.SetActive(false);
+        tracks[trackIndex].color = new Color32(255, 255, 255, 255);
+        buyTrackPanel.SetActive(false);
     }
 }
