@@ -128,9 +128,10 @@ public class Player : MonoBehaviour
                 ChangeLane(-1);
             } else if (Input.GetKeyDown(KeyCode.RightArrow)) {
                 ChangeLane(1);
-            } else if (Input.GetKeyDown(KeyCode.UpArrow)) {
-                Jump();
-            }
+            } 
+            // else if (Input.GetKeyDown(KeyCode.UpArrow)) {
+            //     Jump();
+            // }
         } 
 
         // Functions to pause and resume game

@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
+  userName: 
   tracksCost: 00000000e8030000
 --- !u!4 &130223859
 Transform:
@@ -2113,9 +2114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
+  - {fileID: 1000011638144408, guid: e4530c9317086c24e956c8e653d7cfc1, type: 3}
   - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
-  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}
@@ -2565,9 +2565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
-  - {fileID: 1000011769374998, guid: 61bb777a99260874f88fe72c93801af9, type: 3}
+  - {fileID: 1000011638144408, guid: e4530c9317086c24e956c8e653d7cfc1, type: 3}
   - {fileID: 1000010455400752, guid: 9be026198609a494aae8cec4aba2c813, type: 3}
-  - {fileID: 1000013234899880, guid: 6789d11662a4a2d4b86aac2f6082e0a0, type: 3}
   newObstacles: []
   numberOfObstacles: {x: 3, y: 21}
   coin: {fileID: 4916606854292538132, guid: 88832ed7490708e48b20e0b483dcea92, type: 3}

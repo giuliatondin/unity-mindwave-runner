@@ -47,8 +47,7 @@ public class Track : MonoBehaviour
 
     // Positionate obstacles in scene
     void PositionateObstacles() {
-        for (int i = 0; i < newObstacles.Count; i++)
-        {
+        for (int i = 0; i < newObstacles.Count; i++) {
             float posZMin = (379f / newObstacles.Count) + (379f / newObstacles.Count) * i;
             float posZMax = (379f / newObstacles.Count) + (379f / newObstacles.Count) * i;
             // call obstacle of list

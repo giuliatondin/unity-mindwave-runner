@@ -60,7 +60,6 @@ public class MindwaveHandler : MonoBehaviour
 
     // Function to retry connection when timeout is true
     public void RetryConnection() {
-        Debug.Log("Entrou no retry");
         MindwaveManager.Instance.Controller.Connect();
         MindwaveController.isTimeout = false;
         waitDescriptionText.text = "Aguarde a conexão com o headset...";

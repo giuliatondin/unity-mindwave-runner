@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012242374412}
   - component: {fileID: 65000010890707780}
+  - component: {fileID: 6788132598320828360}
   m_Layer: 9
   m_Name: ObstacleRoadworksBarrier
   m_TagString: Obstacle
@@ -45,6 +46,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.2189937, y: 1.55, z: 0.49}
   m_Center: {x: 0.014282256, y: 0.79, z: 0}
+--- !u!114 &6788132598320828360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010455400752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e67d0b0c9ec3c04e9803ce0bf280596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1000013569680390
 GameObject:
   m_ObjectHideFlags: 0

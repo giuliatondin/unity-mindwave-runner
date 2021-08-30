@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     public Text coinsText;
 
     // Variable that control wich scene is to load next
-    public static int sceneControl = 0; // if 1 = run, 2 = reward;
+    public static int sceneControl; // if 1 = run, 2 = reward;
 
     // Variable that control wich mission is select to collect reward
     public static int missionIndex;
@@ -44,6 +44,9 @@ public class Menu : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         gameStart = true;
+        sceneControl = 0;
+
+        Debug.Log(sceneControl);
 
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Complete as missões apresentadas abaixo:";
@@ -52,7 +55,7 @@ public class Menu : MonoBehaviour
 
         SetMission(); // display missions
 
-        if(ProgressBar.missionControl != -1) {
+        if(ProgressBar.missionControl != -1 && ProgressBar.getMaximum) {
             missionIndex = ProgressBar.missionControl;
             GetReward(missionIndex);
         }

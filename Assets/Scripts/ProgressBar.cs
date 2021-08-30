@@ -15,13 +15,14 @@ public class ProgressBar : MonoBehaviour {
     public Image mask; // Background image used in progress bar
     private float maximum = 100; // Maximum value of progress bar
     [HideInInspector]
-    public static float current = 0; // Current value of progress bar
-    private bool getMaximum = false;
+    public static float current; // Current value of progress bar
+    [HideInInspector]
+    public static bool getMaximum;
     public Text progressText;
     public Sprite decrementProgress;
     public Sprite incrementProgress;
     public Sprite successProgress;
-    private  bool getProgress = true; 
+    private  bool getProgress; 
 
     // Button to collect reward
     public GameObject btnCollect;
@@ -36,6 +37,10 @@ public class ProgressBar : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        getMaximum = false;
+        getProgress = true;
+        current = 0;
+
         float fillAmount = 0;
         mask.fillAmount = fillAmount;
 
@@ -49,17 +54,16 @@ public class ProgressBar : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
+        if(Menu.sceneControl == 2) MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
     }
 
     // Calculate progress
     void GetCurrentFill() {
         if(getProgress) {
-            Debug.Log("Entrou");
+            //Debug.Log("Entrou");
             if(current >= maximum) {
                 imageChild[2].sprite = successProgress;
                 progressText.text = "Parabéns, você conseguiu! Colete sua recompensa apertando no botão abaixo";
-                getMaximum = true;
                 mask.fillAmount = maximum;
                 btnCollect.SetActive(true); 
             } else {
@@ -67,24 +71,24 @@ public class ProgressBar : MonoBehaviour {
                 float fillAmount = current/maximum;
                 mask.fillAmount = fillAmount;
             }
-        } else {
-            Debug.Log("Saiu");
-        }
+        } 
     }
 
     // Update attention data
     public void OnUpdateMindwaveData(MindwaveDataModel _Data)
     {
-        m_MindwaveData = _Data;
-        attentionAux = m_MindwaveData.eSense.attention;
-        if(!progressControl) {
-            attention = m_MindwaveData.eSense.attention;
-            progressControl = true;
-        } else {
-            if(attentionAux != attention) {
+        if(Menu.sceneControl == 2) {
+            m_MindwaveData = _Data;
+            attentionAux = m_MindwaveData.eSense.attention;
+            if(!progressControl) {
                 attention = m_MindwaveData.eSense.attention;
-                if(!getMaximum) {
-                    GetCurrentFill();
+                progressControl = true;
+            } else {
+                if(attentionAux != attention) {
+                    attention = m_MindwaveData.eSense.attention;
+                    if(!getMaximum) {
+                        GetCurrentFill();
+                    }
                 }
             }
         }
@@ -93,11 +97,13 @@ public class ProgressBar : MonoBehaviour {
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
         if(!getMaximum) {
-            if(attention > 60) {
+            if(attention > 40) {
+                //Debug.Log("Atenção: " + attention);
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
             } else {
+                //Debug.Log("Atenção: " + attention);
                 progressText.text = "Volte a focar no crescimento da barra";
                 if(current > 0) {
                     current -= 1;
@@ -109,10 +115,14 @@ public class ProgressBar : MonoBehaviour {
         } 
     }
 
-    // FIXME: Quando fecha com o botão antes de preencher todo bloco, apresenta mensagem de erro
+    public void CollectReward() {
+        getMaximum = true;
+        CallMenu();
+    }
+
     public void CallMenu() {
         getProgress = false;
-        MindwaveManager.Instance.Controller.Disconnect();
+        //MindwaveManager.Instance.Controller.Disconnect();
         GameManager.gm.EndRun();
     }
 }
