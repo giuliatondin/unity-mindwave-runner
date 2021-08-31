@@ -45,9 +45,7 @@ public class Menu : MonoBehaviour
     void Start() {
         gameStart = true;
         sceneControl = 0;
-
-        Debug.Log(sceneControl);
-
+        
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Complete as missões apresentadas abaixo:";
 

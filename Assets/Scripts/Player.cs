@@ -99,6 +99,7 @@ public class Player : MonoBehaviour
 
         // Add life and speed to character
         currentLife = maxLife;
+
         speed = minSpeed;
         uiManager = FindObjectOfType<UIManager>();
 
@@ -181,15 +182,13 @@ public class Player : MonoBehaviour
     }
 
     // Update attention data
-    public void OnUpdateMindwaveData(MindwaveDataModel _Data)
-    {
+    public void OnUpdateMindwaveData(MindwaveDataModel _Data) {
         m_MindwaveData = _Data;
         attention = m_MindwaveData.eSense.attention;
     }
 
     // Update is called in fixed time (default: 0.2s)
-    private void FixedUpdate()
-    {
+    private void FixedUpdate() {
         rb.velocity = Vector3.forward * speed;
     }
 
@@ -321,7 +320,6 @@ public class Player : MonoBehaviour
     }
 
     public void CallMenu() {
-        //MindwaveManager.Instance.Controller.Disconnect();
         GameManager.gm.EndRun();
     }
 

@@ -122,7 +122,6 @@ public class ProgressBar : MonoBehaviour {
 
     public void CallMenu() {
         getProgress = false;
-        //MindwaveManager.Instance.Controller.Disconnect();
         GameManager.gm.EndRun();
     }
 }

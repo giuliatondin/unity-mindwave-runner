@@ -19,6 +19,8 @@ public class MindwaveHandler : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        GameManager.gm.ResumeGame();
+
         waitDescriptionText = GameObject.Find("Waiting Text").GetComponent<Text>();
         sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
 
