@@ -15,11 +15,11 @@ C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-58460
+65451
 Successfully changed project path to: C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner
 C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 66.35 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 33.71 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.11f1 (99c7afb366b3)
 [Subsystems] Discovering subsystems at path C:/Program Files/2020.3.11f1/Editor/Data/Resources/UnitySubsystems
@@ -35,145 +35,16 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/2020.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/2020.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/2020.3.11f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56536
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56316
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/2020.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.001811 seconds.
+Registered in 0.002194 seconds.
 Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 32.45 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 38.74 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.952 seconds
+- Completed reload, in 19.485 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.004155 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.40 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.927 seconds
-Platform modules already initialized, skipping
-========================================================================
-Worker process is ready to serve import requests
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.32 seconds
-Refreshing native plugins compatible for Editor in 0.36 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1425 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 74.6 MB.
-System memory in use after: 74.7 MB.
-
-Unloading 19 unused Assets to reduce memory usage. Loaded Objects now: 1873.
-Total: 1.992500 ms (FindLiveObjects: 0.166600 ms CreateObjectMapping: 0.040300 ms MarkObjects: 1.763400 ms  DeleteObjects: 0.021000 ms)
-
-========================================================================
-Received Import Request.
-  path: Assets/Scenes/DayRun.unity
-  artifactKey: Guid(2608e9f84ce35dd46acda3ac2e08f83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/DayRun.unity using Guid(2608e9f84ce35dd46acda3ac2e08f83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '33e8bf70b1717637d4c6eb2dc7e762ce') in 0.056046 seconds
-  Import took 0.058527 seconds .
-
-========================================================================
-Received Prepare
-Refreshing native plugins compatible for Editor in 2.83 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 14 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 46.0 MB.
-System memory in use after: 46.1 MB.
-
-Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 1873.
-Total: 2.104000 ms (FindLiveObjects: 0.145200 ms CreateObjectMapping: 0.041000 ms MarkObjects: 1.904600 ms  DeleteObjects: 0.012300 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.005698 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.54 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  1.177 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.67 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1413 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 73.9 MB.
-System memory in use after: 74.0 MB.
-
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1876.
-Total: 2.790000 ms (FindLiveObjects: 0.257100 ms CreateObjectMapping: 0.089200 ms MarkObjects: 2.420100 ms  DeleteObjects: 0.021400 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 429.010326 seconds.
-  path: Assets/Scenes/DayRun.unity
-  artifactKey: Guid(2608e9f84ce35dd46acda3ac2e08f83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/DayRun.unity using Guid(2608e9f84ce35dd46acda3ac2e08f83d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5be678206956313aa16d97c2ed98c92') in 0.017140 seconds
-  Import took 0.020002 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 513.268083 seconds.
-  path: Assets/Bundles/Themes/DayTime/Obstacles/ObstacleRoadworksBarrier.prefab
-  artifactKey: Guid(82eb370d70e50344cb6eeb919a1429b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Bundles/Themes/DayTime/Obstacles/ObstacleRoadworksBarrier.prefab using Guid(82eb370d70e50344cb6eeb919a1429b8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd67a94c803513da1bf850ad07bfdd777') in 0.562845 seconds
-  Import took 0.566212 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.004035 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.37 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.906 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.38 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1413 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 77.0 MB.
-System memory in use after: 77.1 MB.
-
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1886.
-Total: 1.599900 ms (FindLiveObjects: 0.140500 ms CreateObjectMapping: 0.043500 ms MarkObjects: 1.399600 ms  DeleteObjects: 0.015400 ms)
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003754 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for WindowsStandalone target not found
-Refreshing native plugins compatible for Editor in 0.42 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.846 seconds
-Platform modules already initialized, skipping
-Refreshing native plugins compatible for Editor in 0.39 ms, found 2 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 1413 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 77.0 MB.
-System memory in use after: 77.1 MB.
-
-Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 1889.
-Total: 1.753000 ms (FindLiveObjects: 0.139900 ms CreateObjectMapping: 0.043600 ms MarkObjects: 1.552800 ms  DeleteObjects: 0.015700 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 188.786788 seconds.
-  path: Assets/Bundles/Themes/NightTime/Obstacles/ObstacleBin.prefab
-  artifactKey: Guid(e4530c9317086c24e956c8e653d7cfc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Bundles/Themes/NightTime/Obstacles/ObstacleBin.prefab using Guid(e4530c9317086c24e956c8e653d7cfc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '736459689b678bc06e21e94aa81d20d1') in 0.241835 seconds
-  Import took 0.244465 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 26.263354 seconds.
-  path: Assets/Scenes/Menu.unity
-  artifactKey: Guid(fe606535c7ba78f488f17fc4b1c3929e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/Menu.unity using Guid(fe606535c7ba78f488f17fc4b1c3929e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6bf9ce751a4aba9b53d86467670ead5') in 0.008640 seconds
-  Import took 0.011357 seconds .
-
+Registered in 0.308835 seconds.

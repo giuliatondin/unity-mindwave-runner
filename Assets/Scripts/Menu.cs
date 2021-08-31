@@ -101,7 +101,12 @@ public class Menu : MonoBehaviour
             missionDescription[i].text = mission.GetMissionDescription();
             missionReward[i].text = "Recompensa: " + mission.reward;
 
-            missionProgress[i].text = mission.progress + mission.currentProgress + " / " + mission.max;
+            if(mission.progress + mission.currentProgress >= mission.max) {
+                missionProgress[i].text = mission.max + " / " + mission.max;
+            } else {
+                missionProgress[i].text = mission.progress + mission.currentProgress + " / " + mission.max;
+            }
+            
 
             float fillAmount = ((float)mission.progress + (float)mission.currentProgress) / (float)mission.max;
             if(fillAmount > 1) missionProgressBar[i].fillAmount = 1;

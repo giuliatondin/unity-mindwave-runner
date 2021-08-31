@@ -64,9 +64,11 @@ public class Player : MonoBehaviour
 
     // Sound effects
     private AudioSource soundEffect;
+    private AudioSource themeMusic;
     public AudioClip impactSound;
     public AudioClip coinSound;
     public AudioClip jumpSound;
+    //public AudioClip themeMusic;
     private bool allowSound = true;
     public Sprite[] soundSprites;
     public Image soundButton;
@@ -108,6 +110,7 @@ public class Player : MonoBehaviour
 
         // Audio source
         soundEffect = GetComponent<AudioSource>();
+        themeMusic = GameObject.Find("Music Theme").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -335,11 +338,13 @@ public class Player : MonoBehaviour
         if(allowSound) {
             soundEffect.volume = 0;
             soundButton.sprite = soundSprites[0];
+            themeMusic.mute = !themeMusic.mute;
             soundDescription.text = "Efeitos sonoros desativados";
             allowSound = false;
         } else {
             soundEffect.volume = 0.5f;
             soundButton.sprite = soundSprites[1];
+            themeMusic.mute = !themeMusic.mute;
             soundDescription.text = "Efeitos sonoros ativados";
             allowSound = true;
         }
