@@ -41,6 +41,8 @@ public class Menu : MonoBehaviour
     private bool buyTrackIsOpen = false;
     public Text trackWarning;
 
+    private Button nextBtn, prevBtn;
+
     // Start is called before the first frame update
     void Start() {
         gameStart = true;
@@ -48,6 +50,9 @@ public class Menu : MonoBehaviour
         
         Text welcome = GameObject.Find("Welcome").GetComponent<Text>();
         welcome.text = "Complete as missões apresentadas abaixo:";
+
+        nextBtn = GameObject.Find("Next Button").GetComponent<Button>();
+        prevBtn = GameObject.Find("Preview Button").GetComponent<Button>();
 
         coinsText.text = GameManager.gm.coins.ToString();
 
@@ -150,8 +155,15 @@ public class Menu : MonoBehaviour
 
     public void ChangeTrack(int index) {
         trackIndex += index;
-        if(trackIndex >= tracks.Length) trackIndex = 0;
-        else if(trackIndex <= 0) trackIndex = tracks.Length - 1;
+        if(trackIndex >= tracks.Length - 1) { 
+            trackIndex = tracks.Length - 1; 
+            nextBtn.interactable = !nextBtn.interactable;
+            prevBtn.interactable = !prevBtn.interactable;
+        } else if(trackIndex <= 0) { 
+            trackIndex = 0;
+            nextBtn.interactable = !nextBtn.interactable;
+            prevBtn.interactable = !prevBtn.interactable;
+        }
 
         for(int i = 0; i < tracks.Length; i++) {
             if(i == trackIndex) tracks[i].gameObject.SetActive(true);

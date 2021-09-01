@@ -1391,7 +1391,7 @@ GameObject:
   - component: {fileID: 708873571}
   - component: {fileID: 708873570}
   m_Layer: 5
-  m_Name: 'Preview Button '
+  m_Name: Preview Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1455,7 +1455,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 708873571}
   m_OnClick:
     m_PersistentCalls:
