@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FocusToReward.unity
     guid: a6f991f7465f29547a82ca1682dcf3c7
+  - enabled: 1
+    path: Assets/Scenes/MeditateToReward.unity
+    guid: afc0ed4be88aeb145a11e819b133e861
   m_configObjects: {}

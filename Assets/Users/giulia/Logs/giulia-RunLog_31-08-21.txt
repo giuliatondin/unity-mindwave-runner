@@ -1,4 +1,0 @@
-lowBeta highBeta attention velocity
-4992 4184 48 9,95 
-23661 13819 60 9,95 
-9722 18881 75 9,95 

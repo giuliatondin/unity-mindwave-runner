@@ -1,5 +1,0 @@
-lowBeta highBeta attention currentProgress 
-225093 206272 56 0 
-416528 236284 56 0 
-138137 52697 56 0 
-173254 252361 56 0 

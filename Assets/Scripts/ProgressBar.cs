@@ -8,8 +8,14 @@ public class ProgressBar : MonoBehaviour {
 
     // Attention variables
     private float attention = 0; // Attention value to set the progress
-    private bool progressControl = false; // Control the progress of the bar regarding attention
     private float attentionAux;
+
+    // Meditation variables
+    private float meditation = 0;
+    private float meditationAux;
+    
+    // Control the progress of the bar regarding attention or meditation
+    private bool progressControl = false; 
 
     // Progress bar variables
     public Image mask; // Background image used in progress bar
@@ -50,24 +56,31 @@ public class ProgressBar : MonoBehaviour {
 
         imageParent = GameObject.Find("Progress Bar").GetComponent<Image>();
         imageChild = imageParent.GetComponentsInChildren<Image>();
+
+        Text description = GameObject.Find("Scene Description").GetComponent<Text>();
+        if(Menu.sceneControl == 2) description.text = "Mantenha o foco para completar a barra de progresso e pegar sua recompensa!";
+        else if(Menu.sceneControl == 3) description.text = "Mantenha-se relaxado";
     }
 
     // Update is called once per frame
     void Update() {
-        if(Menu.sceneControl == 2) MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
+        if(Menu.sceneControl == 2 || Menu.sceneControl == 3) MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
     }
 
     // Calculate progress
     void GetCurrentFill() {
         if(getProgress) {
-            //Debug.Log("Entrou");
             if(current >= maximum) {
                 imageChild[2].sprite = successProgress;
                 progressText.text = "Parabéns, você conseguiu! Colete sua recompensa apertando no botão abaixo";
                 mask.fillAmount = maximum;
                 btnCollect.SetActive(true); 
             } else {
-                GetCurrentAttention();
+                if(Menu.sceneControl == 2) {
+                    GetCurrentAttention();
+                } else if(Menu.sceneControl == 3) {
+                    GetCurrentMeditation();
+                }
                 float fillAmount = current/maximum;
                 mask.fillAmount = fillAmount;
             }
@@ -75,10 +88,9 @@ public class ProgressBar : MonoBehaviour {
     }
 
     // Update attention data
-    public void OnUpdateMindwaveData(MindwaveDataModel _Data)
-    {
+    public void OnUpdateMindwaveData(MindwaveDataModel _Data) {
+        m_MindwaveData = _Data;
         if(Menu.sceneControl == 2) {
-            m_MindwaveData = _Data;
             attentionAux = m_MindwaveData.eSense.attention;
             if(!progressControl) {
                 attention = m_MindwaveData.eSense.attention;
@@ -91,19 +103,31 @@ public class ProgressBar : MonoBehaviour {
                     }
                 }
             }
+        } else if(Menu.sceneControl == 3) {
+            meditationAux = m_MindwaveData.eSense.meditation;
+            if(!progressControl) {
+                meditation = m_MindwaveData.eSense.meditation;
+                progressControl = true;
+            } else {
+                if(meditationAux != meditation) {
+                    meditation = m_MindwaveData.eSense.meditation;
+                    if(!getMaximum) {
+                        GetCurrentFill();
+                    }
+                }
+            }
         }
     }
 
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
+        Debug.Log("Atenção: " + attention);
         if(!getMaximum) {
-            if(attention > 40) {
-                //Debug.Log("Atenção: " + attention);
+            if(attention > 20) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
             } else {
-                //Debug.Log("Atenção: " + attention);
                 progressText.text = "Volte a focar no crescimento da barra";
                 if(current > 0) {
                     current -= 1;
@@ -115,8 +139,29 @@ public class ProgressBar : MonoBehaviour {
         } 
     }
 
+    // Get current meditation to fill the progress bar
+    void GetCurrentMeditation() {
+        if(!getMaximum) {
+            if(meditation > 50) {
+                progressText.text = "Muito bem, continue relaxando";
+                imageChild[2].sprite = incrementProgress;
+                current += 5;
+            } else {
+                progressText.text = "Volte a relaxar";
+                if(current > 0) {
+                    current -= 1;
+                    imageChild[2].sprite = decrementProgress;
+                }
+            }
+        } else {
+            current = maximum; 
+        } 
+    }
+
+    // Earn reward in menu call if getMaxium value in progress bar
     public void CollectReward() {
-        getMaximum = true;
+        if(Menu.sceneControl == 3) BonusBase.getBonus = true;
+        else if(Menu.sceneControl == 2) getMaximum = true;
         CallMenu();
     }
 

@@ -20,6 +20,10 @@ public class PlayerData
     public int[] reward;
     public string[] missionType;
     public int[] tracksCost;
+
+    public int missionsCompleted;
+    public int bonusMissionsCheck;
+    public int bonusMissionsRewards;
 }
 
 public class GameManager : MonoBehaviour
@@ -32,7 +36,12 @@ public class GameManager : MonoBehaviour
     // Coins collected in one game
     public int coins;
 
-    public string userName = Login.userName;
+    // Total of missions completed in the game
+    public int missionsCompleted;
+    public int bonusMissionsCheck;
+    public int bonusMissionsRewards;
+
+    //public string userName = Login.userName;
 
     // Tracks availables in one game
     public int[] tracksCost;
@@ -55,6 +64,10 @@ public class GameManager : MonoBehaviour
         PlayerData data = new PlayerData();
         // save coins in data object
         data.coins = coins;
+        // save total of missions completed in data object
+        data.missionsCompleted = missionsCompleted;
+        data.bonusMissionsCheck = bonusMissionsCheck;
+        data.bonusMissionsRewards = bonusMissionsRewards;
         // its necessary initiate each vector
         // size 2 because menu show two missions
         data.max = new int[2];
@@ -92,6 +105,9 @@ public class GameManager : MonoBehaviour
 
         // set data of file in variables of the game
         coins = data.coins;
+        missionsCompleted = data.missionsCompleted;
+        bonusMissionsCheck = data.bonusMissionsCheck;
+        bonusMissionsRewards = data.bonusMissionsRewards;
 
         for (int i = 0; i < 2; i++) {
             GameObject newMission = new GameObject("Mission" + i);
@@ -122,8 +138,7 @@ public class GameManager : MonoBehaviour
 
         for(int i = 0; i < tracksCost.Length; i++) {
             tracksCost[i] = data.tracksCost[i];
-        }
-        
+        }      
     }
 
     // Awake is called before start
@@ -210,6 +225,10 @@ public class GameManager : MonoBehaviour
 
     public void StartReward() {
         SceneManager.LoadScene("FocusToReward");
+    }
+
+    public void StartBonus() {
+        SceneManager.LoadScene("MeditateToReward");
     }
 
     public void EndRun() {

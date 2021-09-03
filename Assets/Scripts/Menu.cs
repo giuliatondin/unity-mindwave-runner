@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-
     // Reference to the missions descriptions of Game Manager
     public Text[] missionDescription, missionReward, missionProgress;
     public Image[] missionProgressBar;
@@ -40,11 +39,16 @@ public class Menu : MonoBehaviour
     public GameObject[] buyTrackWarnings;
     private bool buyTrackIsOpen = false;
     public Text trackWarning;
+    public GameObject bonusPanel;
 
     private Button nextBtn, prevBtn;
 
+    public BonusBase bonus;
+
     // Start is called before the first frame update
     void Start() {
+        bonus = GameObject.Find("Bonus Base").GetComponent<BonusBase>();
+
         gameStart = true;
         sceneControl = 0;
         
@@ -61,7 +65,15 @@ public class Menu : MonoBehaviour
         if(ProgressBar.missionControl != -1 && ProgressBar.getMaximum) {
             missionIndex = ProgressBar.missionControl;
             GetReward(missionIndex);
+        }        
+
+        if(ProgressBar.missionControl != -1 && BonusBase.getBonus) {
+            bonus.GetMissionBonus();
+            bonus.RemoveMissionBonus();
+            UpdateCoins(GameManager.gm.coins);
         }
+
+        SetBonus();
     }
 
     // Update quantity of fishes collected in rewards in menu
@@ -127,10 +139,29 @@ public class Menu : MonoBehaviour
         GameManager.gm.Save();
     }
 
+    public void SetBonus() {
+        if(GameManager.gm.missionsCompleted == bonus.MissionsBonusCheck()) {
+            bonusPanel.SetActive(true);
+            Text description = GameObject.Find("Bonus Description").GetComponent<Text>();
+            description.text = bonus.MissionsBonusDesc().ToString();
+        }
+    }
+
+    public void CloseBonusPanel() {
+        bonusPanel.SetActive(false);
+        bonus.RemoveMissionBonus();
+    }
+
     // Function called when button reward is pressed
     public void CollectReward(int index) {
         sceneControl = 2;
         missionIndex = index;
+        SceneManager.LoadScene("ConnectHeadset");
+    }
+
+    // Function called when button bonus is pressed
+    public void CollectBonus() {
+        sceneControl = 3;
         SceneManager.LoadScene("ConnectHeadset");
     }
 
@@ -139,10 +170,12 @@ public class Menu : MonoBehaviour
     // and update total of fishes collected in rewards
     public void GetReward(int missionIndex) {
         GameManager.gm.coins += GameManager.gm.GetMission(missionIndex).reward;
+        GameManager.gm.missionsCompleted += 1;
         UpdateCoins(GameManager.gm.coins);
         rewardButton[missionIndex].SetActive(false);
         GameManager.gm.GenerateMission(missionIndex);
         ProgressBar.missionControl = -1;
+        GameManager.gm.Save();
     }
 
     public void SetTrack(int index) {

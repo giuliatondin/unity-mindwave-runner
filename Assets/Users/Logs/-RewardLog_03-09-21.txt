@@ -1,0 +1,5 @@
+lowBeta highBeta attention currentProgress 
+8470 6040 51 0 
+13920 15263 81 0 
+50965 43740 100 0 
+1439 1341 100 0 

@@ -27,6 +27,7 @@ public class MindwaveHandler : MonoBehaviour
         // Change description text depending of the chosen scene 
         if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Desvie dos obstáculos, colete estrelas e ganhe o dobro de seu valor ao manter um nível elevado de atenção no jogo. Então, vamos lá, concentrAÇÃO!";
         else if(Menu.sceneControl == 2) sceneDescription.text = "Coloque o headset e prepare-se para a recompensa! Você precisa concentrar-se no crescimento da barra de progresso para completá-la e assim receber sua recompensa. As moedas estão te esperando, então vamos lá!";
+        else if(Menu.sceneControl == 3) sceneDescription.text = "Coloque o headset e relaxe!";
     }
 
     // Update is called once per frame
@@ -54,10 +55,12 @@ public class MindwaveHandler : MonoBehaviour
 
     // Function to change to scene
     public void ChangeScene() {
+        waitDescriptionText.text = "Iniciando..."; 
         btnStart.SetActive(false);
         if(Menu.sceneControl == 1 && Menu.trackIndex == 0) GameManager.gm.StartRunDay();
         else if(Menu.sceneControl == 1 && Menu.trackIndex == 1) GameManager.gm.StartRunNight();
         else if(Menu.sceneControl == 2) GameManager.gm.StartReward();
+        else if(Menu.sceneControl == 3) GameManager.gm.StartBonus();
     }
 
     // Function to retry connection when timeout is true
