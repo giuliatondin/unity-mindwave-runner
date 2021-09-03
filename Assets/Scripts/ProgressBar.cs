@@ -121,7 +121,7 @@ public class ProgressBar : MonoBehaviour {
 
     // Get current attention to fill the progress bar
     void GetCurrentAttention() {
-        Debug.Log("Atenção: " + attention);
+        //Debug.Log("Atenção: " + attention);
         if(!getMaximum) {
             if(attention > 20) {
                 progressText.text = "Muito bem, continue focando na barra";
