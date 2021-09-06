@@ -412,7 +412,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coins: 0
-  userName: 
+  missionsCompleted: 0
+  bonusMissionsCheck: 0
+  bonusMissionsRewards: 0
   tracksCost: 00000000e8030000
 --- !u!4 &130223859
 Transform:

@@ -52,7 +52,7 @@ public class Player : MonoBehaviour
 
     // Variable to count points made in one game
     [HideInInspector] // does not allow it to be edited by unity
-    public float score;
+    public float score = 0;
 
     // Variable to show attention during the game
     [HideInInspector] // does not allow it to be edited by unity
@@ -79,9 +79,16 @@ public class Player : MonoBehaviour
     public Button pauseButton;
     public Text[] missionDescription;
 
+    // Variables to summary
+    [HideInInspector]
+    public static float timeCounter = 0;
+    [HideInInspector]
+    public static string runTime;
+
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        timeCounter = Time.timeSinceLevelLoad;
+
         Time.timeScale = 1;
         GameManager.isPaused = false;
         
@@ -116,6 +123,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeCounter = Time.timeSinceLevelLoad;
+
         MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
         score += Time.deltaTime * speed;
 
@@ -323,6 +332,8 @@ public class Player : MonoBehaviour
     }
 
     public void CallMenu() {
+        runTime = timeCounter.ToString("F3");
+        PlayerSummary.RunSummary(runTime, score, coins);
         GameManager.gm.EndRun();
     }
 

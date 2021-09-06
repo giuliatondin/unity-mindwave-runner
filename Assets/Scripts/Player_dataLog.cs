@@ -5,16 +5,22 @@ using System.IO;
 using System.Linq;
 using System;
 
-public class Player_dataLog : MonoBehaviour
-{
+public class Player_dataLog : MonoBehaviour {
     private string folderPath;
 
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
     int dataControl = 0;
     int textControl = 0; // 1 - run, 2 - reward
-    int run = 0; // num of runs in one day
+    [HideInInspector]
+    public static int run = 1; // num of runs in one day
     int reward = 0; // num of rewards in one day
+    int bonus = 0;
+
+    [HideInInspector]
+    public static float attentionTotal = 0;
+    [HideInInspector]
+    public static int registers = 0;
 
     void CreateText(int control) {
         if(control == 1) {
@@ -22,7 +28,7 @@ public class Player_dataLog : MonoBehaviour
             string path = folderPath + "/" + Login.userName + "-RunLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
             // Check if file exist
             if (!File.Exists(path)) {
-                File.WriteAllText(path, "run lowBeta highBeta attention velocity\n");
+                File.WriteAllText(path, "run;lowBeta;highBeta;attention;velocity;timestamp(s)\n");
                 MindwaveHandler.newActivity = false;
                 run = 1;
             } else if(MindwaveHandler.newActivity == true) {
@@ -32,15 +38,18 @@ public class Player_dataLog : MonoBehaviour
             //Content of the file
             if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && Player.speed > 0)  {
                 dataControl = m_MindwaveData.eegPower.delta;
-                string content = run + " " + m_MindwaveData.eegPower.lowBeta.ToString() + " " + m_MindwaveData.eegPower.highBeta.ToString() + " " + m_MindwaveData.eSense.attention.ToString() + " " + Player.speed + " " + "\n";
+                string content = run + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + Player.speed + ";" + Player.timeCounter + "\n";
                 File.AppendAllText(path, content);
+
+                attentionTotal += m_MindwaveData.eSense.attention;
+                registers++;
             }
         } 
     
         else if(control == 2) {
-            string path = folderPath + "/" + Login.userName + "-RewardLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
+            string path = folderPath + "/Reward/" + Login.userName + "-RewardLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
             if (!File.Exists(path)) {
-                File.WriteAllText(path, "reward lowBeta highBeta attention currentProgress \n");
+                File.WriteAllText(path, "reward;lowBeta;highBeta;attention;currentProgress\n");
                 MindwaveHandler.newActivity = false;
                 reward = 1;
             } else if(MindwaveHandler.newActivity == true) {
@@ -49,7 +58,24 @@ public class Player_dataLog : MonoBehaviour
             }
             if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && ProgressBar.current <= 100)  {
                 dataControl = m_MindwaveData.eegPower.delta;
-                string content = reward + " " + m_MindwaveData.eegPower.lowBeta.ToString() + " " + m_MindwaveData.eegPower.highBeta.ToString() + " " + m_MindwaveData.eSense.attention.ToString() + " " + ProgressBar.current + " " + "\n";
+                string content = reward + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + ProgressBar.current + "\n";
+                File.AppendAllText(path, content);
+            }
+        }
+
+        else if(control == 3) {
+            string path = folderPath + "/Bonus/" + Login.userName + "-BonusLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
+            if (!File.Exists(path)) {
+                File.WriteAllText(path, "bonus;lowBeta;highBeta;meditation;currentProgress\n");
+                MindwaveHandler.newActivity = false;
+                bonus = 1;
+            } else if(MindwaveHandler.newActivity == true) {
+                MindwaveHandler.newActivity = false;
+                bonus = ReadLastLine(path);
+            }
+            if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && ProgressBar.current <= 100)  {
+                dataControl = m_MindwaveData.eegPower.delta;
+                string content = bonus + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.meditation.ToString() + ";" + ProgressBar.current +  "\n";
                 File.AppendAllText(path, content);
             }
         }

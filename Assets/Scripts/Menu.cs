@@ -47,6 +47,8 @@ public class Menu : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        Debug.Log(Player.runTime);
+
         bonus = GameObject.Find("Bonus Base").GetComponent<BonusBase>();
 
         gameStart = true;
