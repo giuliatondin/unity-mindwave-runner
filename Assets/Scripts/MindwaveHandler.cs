@@ -20,6 +20,10 @@ public class MindwaveHandler : MonoBehaviour
     [HideInInspector]
     public static bool newActivity;
 
+    public string[] runTips;
+    public string[] rewardTips;
+    public string[] bonusTips;
+
     // Start is called before the first frame update
     void Start() {
         newActivity = true;
@@ -30,9 +34,9 @@ public class MindwaveHandler : MonoBehaviour
         sceneDescription = GameObject.Find("Scene Description").GetComponent<Text>();
 
         // Change description text depending of the chosen scene 
-        if(Menu.sceneControl == 1) sceneDescription.text = "Coloque o headset e prepare-se para correr! Desvie dos obstáculos, colete estrelas e ganhe o dobro de seu valor ao manter um nível elevado de atenção no jogo. Então, vamos lá, concentrAÇÃO!";
-        else if(Menu.sceneControl == 2) sceneDescription.text = "Coloque o headset e prepare-se para a recompensa! Você precisa concentrar-se no crescimento da barra de progresso para completá-la e assim receber sua recompensa. As moedas estão te esperando, então vamos lá!";
-        else if(Menu.sceneControl == 3) sceneDescription.text = "Coloque o headset e relaxe!";
+        if(Menu.sceneControl == 1) sceneDescription.text = runTips[Random.Range(0, runTips.Length)];
+        else if(Menu.sceneControl == 2) sceneDescription.text = rewardTips[Random.Range(0, rewardTips.Length)];
+        else if(Menu.sceneControl == 3) sceneDescription.text = bonusTips[Random.Range(0, bonusTips.Length)];
     }
 
     // Update is called once per frame

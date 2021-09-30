@@ -745,6 +745,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnStart: {fileID: 393663725}
   btnRetry: {fileID: 1788423546}
+  runTips:
+  - Foque no movimento do personagem para aumentar a velocidade
+  - "Escolha uma palavra e repita ela mentalmente para ajudar a aumentar a concentra\xE7\xE3o"
+  - "Imagine o personagem correndo mais rapidamente para aumentar o n\xEDvel de aten\xE7\xE3o"
+  rewardTips:
+  - "Foque no crescimento da barra para complet\xE1-la mais rapidamente"
+  - 
+  bonusTips:
+  - 
+  - 
 --- !u!4 &736072144
 Transform:
   m_ObjectHideFlags: 0

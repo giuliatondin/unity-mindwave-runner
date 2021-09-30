@@ -4896,7 +4896,7 @@ MonoBehaviour:
   jumpLength: 7.5
   jumpHeight: 2
   maxLife: 3
-  minSpeed: 10
+  minSpeed: 5
   maxSpeed: 30
   invencibleTime: 2
   model: {fileID: 402975854}

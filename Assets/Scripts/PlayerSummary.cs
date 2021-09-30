@@ -24,12 +24,4 @@ public class PlayerSummary : MonoBehaviour {
         string content = Player_dataLog.run + ";" + runTime + ";" + (int)score + ";" + coins + ";" + Math.Ceiling(Player_dataLog.attentionTotal/Player_dataLog.registers) + "\n";
         File.AppendAllText(path, content);
     }
-
-    void RewardSummary() {
-
-    }
-
-    void BonusSummary() {
-
-    }
 }

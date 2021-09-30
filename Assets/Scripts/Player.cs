@@ -37,7 +37,8 @@ public class Player : MonoBehaviour
 
     // Variables to make character collide and lose life
     public int maxLife = 3;
-    private int currentLife;
+    [HideInInspector]
+    public static int currentLife;
     private bool isHit = false;
     public float minSpeed = 10f;
     public float maxSpeed = 30f;

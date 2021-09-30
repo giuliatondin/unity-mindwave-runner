@@ -43,6 +43,8 @@ public class ProgressBar : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        Player.timeCounter = Time.timeSinceLevelLoad;
+
         getMaximum = false;
         getProgress = true;
         current = 0;
@@ -64,6 +66,8 @@ public class ProgressBar : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        Player.timeCounter = Time.timeSinceLevelLoad;
+        
         if(Menu.sceneControl == 2 || Menu.sceneControl == 3) MindwaveManager.Instance.Controller.OnUpdateMindwaveData += OnUpdateMindwaveData;
     }
 
@@ -123,7 +127,7 @@ public class ProgressBar : MonoBehaviour {
     void GetCurrentAttention() {
         //Debug.Log("Atenção: " + attention);
         if(!getMaximum) {
-            if(attention > 20) {
+            if(attention > 60) {
                 progressText.text = "Muito bem, continue focando na barra";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
