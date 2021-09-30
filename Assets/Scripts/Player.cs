@@ -50,6 +50,7 @@ public class Player : MonoBehaviour
     // Variable to count coins collected
     [HideInInspector] // does not allow it to be edited by unity
     public int coins;
+    public GameObject bonusPanel;
 
     // Variable to count points made in one game
     [HideInInspector] // does not allow it to be edited by unity
@@ -69,6 +70,7 @@ public class Player : MonoBehaviour
     public AudioClip impactSound;
     public AudioClip coinSound;
     public AudioClip jumpSound;
+    public AudioClip bonusSound;
     //public AudioClip themeMusic;
     private bool allowSound = true;
     public Sprite[] soundSprites;
@@ -251,13 +253,16 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         // Compare if object collided is a coin
         if (other.CompareTag("Coin")) {
+            // FIXME: mudar para quando estiver com atenção > 80
             if(attention >= 80) {
                 coins += 2; // add 2 coins to the sum, bonus if user have elevated attention!
-                //Debug.Log("Você conseguiu um bônus!");
+                bonusPanel.SetActive(true);
+                soundEffect.clip = bonusSound;
             } else {
                 coins++; // add one coin to the sum
-            }
-            soundEffect.clip = coinSound;
+                bonusPanel.SetActive(false);
+                soundEffect.clip = coinSound;
+            }           
             soundEffect.Play();
             uiManager.UpdateCoins(coins);
             other.transform.parent.gameObject.SetActive(false);
