@@ -6,7 +6,7 @@ using UnityEngine;
 
 // Help in mission selection
 public enum MissionType {
-    SingleRun, TotalMeters, FishesSingleRun
+    SingleRun, CollectSingleRun//, TotalMeters
 }
 
 // Base script for missions of the game
@@ -38,9 +38,9 @@ public class SingleRun : MissionBase {
     public override void Created()
     {
         missionType = MissionType.SingleRun;
-        int[] maxValues = { 100, 200, 300, 400 };
+        int[] maxValues = { 500, 700, 1000, 2000 };
         int randomMaxValue = Random.Range(0, maxValues.Length);
-        int[] rewards = { 50, 100, 200, 250 }; // win coins if complete each meters
+        int[] rewards = { 100, 200, 300, 600 }; // win coins if complete each meters
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
         progress = 0;
@@ -63,46 +63,46 @@ public class SingleRun : MissionBase {
 }
 
 // Mission 2: Run [10000, 20000...] meters in the game
-public class TotalMeters : MissionBase
-{
-    public override void Created()
-    {
-        missionType = MissionType.TotalMeters;
-        int[] maxValues = { 100, 200, 300, 400 };
-        int randomMaxValue = Random.Range(0, maxValues.Length);
-        int[] rewards = { 100, 200, 300, 400 };
-        reward = rewards[randomMaxValue];
-        max = maxValues[randomMaxValue];
-        progress = 0;
-    }
+// public class TotalMeters : MissionBase
+// {
+//     public override void Created()
+//     {
+//         missionType = MissionType.TotalMeters;
+//         int[] maxValues = { 100, 200, 300, 400 };
+//         int randomMaxValue = Random.Range(0, maxValues.Length);
+//         int[] rewards = { 100, 200, 300, 400 };
+//         reward = rewards[randomMaxValue];
+//         max = maxValues[randomMaxValue];
+//         progress = 0;
+//     }
 
-    public override string GetMissionDescription()
-    {
-        return "Corra " + max + "m no total";
-    }
+//     public override string GetMissionDescription()
+//     {
+//         return "Corra " + max + "m no total";
+//     }
 
-    public override void RunStart()
-    {
-        progress += currentProgress;
-        player = FindObjectOfType<Player>();
-    }
+//     public override void RunStart()
+//     {
+//         progress += currentProgress;
+//         player = FindObjectOfType<Player>();
+//     }
 
-    public override void Update()
-    {
-        if (player == null) return;
-        currentProgress = (int)player.score;
-    }
-}
+//     public override void Update()
+//     {
+//         if (player == null) return;
+//         currentProgress = (int)player.score;
+//     }
+// }
 
 // Mission 3: Collect [100, 200... ] coins in a race
-public class FishesSingleRun : MissionBase
+public class CollectSingleRun : MissionBase
 {
     public override void Created()
     {
-        missionType = MissionType.FishesSingleRun;
-        int[] maxValues = { 100, 200, 300, 400, 500 };
+        missionType = MissionType.CollectSingleRun;
+        int[] maxValues = { 100, 200, 400, 500 };
         int randomMaxValue = Random.Range(0, maxValues.Length);
-        int[] rewards = { 100, 200, 300, 400, 500 };
+        int[] rewards = { 30, 50, 100, 200 };
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
         progress = 0;

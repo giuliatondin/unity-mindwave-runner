@@ -119,15 +119,10 @@ public class GameManager : MonoBehaviour
                 missions[i] = newMission.AddComponent<SingleRun>();
                 missions[i].missionType = MissionType.SingleRun;
             }
-            else if (data.missionType[i] == MissionType.TotalMeters.ToString())
+            else if (data.missionType[i] == MissionType.CollectSingleRun.ToString())
             {
-                missions[i] = newMission.AddComponent<TotalMeters>();
-                missions[i].missionType = MissionType.TotalMeters;
-            }
-            else if (data.missionType[i] == MissionType.FishesSingleRun.ToString())
-            {
-                missions[i] = newMission.AddComponent<FishesSingleRun>();
-                missions[i].missionType = MissionType.FishesSingleRun;
+                missions[i] = newMission.AddComponent<CollectSingleRun>();
+                missions[i].missionType = MissionType.CollectSingleRun;
             }
 
             missions[i].max = data.max[i];
@@ -173,20 +168,16 @@ public class GameManager : MonoBehaviour
                 GameObject newMission = new GameObject("Mission" + i);
                 newMission.transform.SetParent(transform);
                 // create vector of mission's type 
-                MissionType[] missionTypes = { MissionType.SingleRun, MissionType.FishesSingleRun, MissionType.TotalMeters };
+                MissionType[] missionTypes = { MissionType.SingleRun, MissionType.CollectSingleRun };
                 int randomType = Random.Range(0, missionTypes.Length);
                 // verify which mission was selected
                 if (randomType == (int)MissionType.SingleRun)
                 {
                     missions[i] = newMission.AddComponent<SingleRun>();
                 }
-                else if (randomType == (int)MissionType.TotalMeters)
+                else if (randomType == (int)MissionType.CollectSingleRun)
                 {
-                    missions[i] = newMission.AddComponent<TotalMeters>();
-                }
-                else if (randomType == (int)MissionType.FishesSingleRun)
-                {
-                    missions[i] = newMission.AddComponent<FishesSingleRun>();
+                    missions[i] = newMission.AddComponent<CollectSingleRun>();
                 }
                 missions[i].Created();
             }
@@ -256,20 +247,16 @@ public class GameManager : MonoBehaviour
         GameObject newMission = new GameObject("Mission" + index);
         newMission.transform.SetParent(transform);
         // create vector of mission's type 
-        MissionType[] missionTypes = { MissionType.SingleRun, MissionType.FishesSingleRun, MissionType.TotalMeters };
+        MissionType[] missionTypes = { MissionType.SingleRun, MissionType.CollectSingleRun };
         int randomType = Random.Range(0, missionTypes.Length);
         // verify which mission was selected
         if (randomType == (int)MissionType.SingleRun)
         {
             missions[index] = newMission.AddComponent<SingleRun>();
         }
-        else if (randomType == (int)MissionType.TotalMeters)
+        else if (randomType == (int)MissionType.CollectSingleRun)
         {
-            missions[index] = newMission.AddComponent<TotalMeters>();
-        }
-        else if (randomType == (int)MissionType.FishesSingleRun)
-        {
-            missions[index] = newMission.AddComponent<FishesSingleRun>();
+            missions[index] = newMission.AddComponent<CollectSingleRun>();
         }
         missions[index].Created();
 
