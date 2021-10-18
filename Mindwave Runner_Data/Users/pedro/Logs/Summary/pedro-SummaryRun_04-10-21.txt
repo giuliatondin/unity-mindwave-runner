@@ -1,2 +1,0 @@
-numRun;runTime(s);distance(m);coins;attentionMean
-1;131,478;630;125;NaN

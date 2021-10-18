@@ -14,6 +14,7 @@ public class MindwaveHandler : MonoBehaviour
 
     public GameObject btnStart;
     public GameObject btnRetry;
+    public GameObject btnClose;
     private Text waitDescriptionText;
     private Text sceneDescription;
 

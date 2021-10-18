@@ -4326,7 +4326,7 @@ MonoBehaviour:
   missionsCompleted: 0
   bonusMissionsCheck: 1
   bonusMissionsRewards: 10
-  tracksCost: 00000000e8030000
+  tracksCost: 00000000f4010000
 --- !u!4 &1905019696
 Transform:
   m_ObjectHideFlags: 0
