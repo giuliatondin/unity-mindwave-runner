@@ -253,7 +253,6 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         // Compare if object collided is a coin
         if (other.CompareTag("Coin")) {
-            // FIXME: mudar para quando estiver com atenção > 80
             if(attention >= 80) {
                 coins += 2; // add 2 coins to the sum, bonus if user have elevated attention!
                 bonusPanel.SetActive(true);
@@ -329,7 +328,9 @@ public class Player : MonoBehaviour
         } else {
             if(attention > 80) {
                 speed += 0.05f;
-            } else if(attention > 60 && attention < 80) {
+            // } else if(attention > 60 && attention < 80) {
+            //     speed += 0.02f;
+            } else if(attention > 40 && attention < 60) {
                 speed += 0.02f;
             } else {
                 speed -= 0.05f;

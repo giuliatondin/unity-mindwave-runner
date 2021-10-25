@@ -6,7 +6,7 @@ using UnityEngine;
 
 // Help in mission selection
 public enum MissionType {
-    SingleRun, CollectSingleRun//, TotalMeters
+    SingleRun, CollectSingleRun, TimeRun//, TotalMeters
 }
 
 // Base script for missions of the game
@@ -15,6 +15,8 @@ public abstract class MissionBase : MonoBehaviour
     public int max;
     public int progress;
     public int reward;
+    public int time;
+    public bool timeout;
     public Player player;
     public int currentProgress;
     public MissionType missionType;
@@ -44,6 +46,7 @@ public class SingleRun : MissionBase {
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
         progress = 0;
+        time = 0;
     }
 
     public override string GetMissionDescription() {
@@ -52,6 +55,7 @@ public class SingleRun : MissionBase {
 
     public override void RunStart() {
         progress = 0;
+        timeout = false;
         player = FindObjectOfType<Player>();
     }
 
@@ -105,6 +109,7 @@ public class CollectSingleRun : MissionBase
         int[] rewards = { 30, 50, 100, 200 };
         reward = rewards[randomMaxValue];
         max = maxValues[randomMaxValue];
+        time = 0;
         progress = 0;
     }
 
@@ -116,6 +121,7 @@ public class CollectSingleRun : MissionBase
     public override void RunStart()
     {
         progress = 0;
+        timeout = false;
         player = FindObjectOfType<Player>();
     }
 
@@ -123,5 +129,44 @@ public class CollectSingleRun : MissionBase
     {
         if (player == null) return;
         progress = player.coins;
+    }
+}
+
+// Mission 4: Run [1000, 2000...] meters in [30, 50, 100]s
+public class TimeRun : MissionBase {
+    public override void Created()
+    {
+        missionType = MissionType.TimeRun;
+        int[] maxValues = { 300, 300, 300, 300, 300 };
+        int randomMaxValue = Random.Range(0, maxValues.Length);
+        int[] rewards = { 100, 200, 300, 400, 300 }; // win coins if complete each meters
+        int[] timeLimit = { 10, 30, 5, 40, 50 };
+        reward = rewards[randomMaxValue];
+        max = maxValues[randomMaxValue];
+        time = timeLimit[randomMaxValue];
+        progress = 0;
+    }
+
+    public override string GetMissionDescription() {
+        return "Corra " + max + " metros em " + time  +" segundos em uma corrida";
+    }
+
+    public override void RunStart() {
+        progress = 0;
+        timeout = false;
+        player = FindObjectOfType<Player>();
+    }
+
+    public override void Update()
+    {
+        if (player == null) return;
+        if((int)Player.timeCounter <= time) {
+            if((int)player.score == max) {
+                timeout = false;
+                progress = max;
+            }
+        } else if(progress != max) {
+            timeout = true;
+        }
     }
 }

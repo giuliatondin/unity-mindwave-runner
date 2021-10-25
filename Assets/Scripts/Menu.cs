@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Menu : MonoBehaviour
 {
     // Reference to the missions descriptions of Game Manager
-    public Text[] missionDescription, missionReward, missionProgress;
+    public Text[] missionDescription, missionReward, missionProgress, missionTimeLimit;
     public Image[] missionProgressBar;
 
     // Reference to the reward button
@@ -133,6 +133,12 @@ public class Menu : MonoBehaviour
 
             if (mission.GetMissionComplete()) {
                 rewardButton[i].SetActive(true);
+            }
+
+            if(mission.timeout) {
+                missionTimeLimit[i].gameObject.SetActive(true);
+            } else {
+                missionTimeLimit[i].gameObject.SetActive(false);
             }
         }
 

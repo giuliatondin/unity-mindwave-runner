@@ -22,12 +22,6 @@ ScriptsOnlyBuild:
     - UIManager
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
@@ -513,7 +507,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3986}
     - Class: 114
-      Script: {instanceID: 17376}
+      Script: {instanceID: 20628}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -615,7 +609,7 @@ ScriptsOnlyBuild:
     className: Shadow
   - hash:
       serializedVersion: 2
-      Hash: f0489f3b158aa060fa37fda7de334282
+      Hash: 6fb0fa495a5980ace4599086a13bdf5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Menu
@@ -1102,4 +1096,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/DayRun.unity
   - Assets/Scenes/FocusToReward.unity
   - Assets/Scenes/MeditateToReward.unity
-  playerPath: C:/Users/SAMSUNG/Desktop/Mindwave Runner.exe
+  playerPath: C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner/Mindwave Runner.exe

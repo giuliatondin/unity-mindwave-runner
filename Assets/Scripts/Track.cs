@@ -97,7 +97,7 @@ public class Track : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             transform.position = new Vector3(0, 0, transform.position.z + 379 * 2);
-            obstaclesControl += 3;
+            obstaclesControl += 5;
             if(obstaclesControl > numberOfObstacles.y) obstaclesControl = numberOfObstacles.y;
             InstantiateObstacles();
             PositionateObstacles();
