@@ -1,1 +1,0 @@
-run;lowBeta;highBeta;attention;velocity;currentLife;timestamp(s)

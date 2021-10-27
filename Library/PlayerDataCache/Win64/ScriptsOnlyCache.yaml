@@ -507,7 +507,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3986}
     - Class: 114
-      Script: {instanceID: 20628}
+      Script: {instanceID: 16098}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1011,7 +1011,7 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: a1a7bb11003430d51626d0dd9c429ab4
+      Hash: 51392783ac8605726012acc0b6c99103
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Track
@@ -1096,4 +1096,5 @@ ScriptsOnlyBuild:
   - Assets/Scenes/DayRun.unity
   - Assets/Scenes/FocusToReward.unity
   - Assets/Scenes/MeditateToReward.unity
-  playerPath: C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner/Mindwave Runner.exe
+  playerPath: C:/Users/SAMSUNG/Documents/GitHub/unity-mindwave-runner/Builds/Mindwave
+    Runner.exe

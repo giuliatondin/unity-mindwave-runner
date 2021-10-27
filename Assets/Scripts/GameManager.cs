@@ -121,19 +121,13 @@ public class GameManager : MonoBehaviour
             newMission.transform.SetParent(transform);
             // set mission type and add component
 
-            // if (data.missionType[i] == MissionType.SingleRun.ToString()) {
-            //     missions[i] = newMission.AddComponent<SingleRun>();
-            //     missions[i].missionType = MissionType.SingleRun;
-            // } else if (data.missionType[i] == MissionType.CollectSingleRun.ToString()) {
-            //     missions[i] = newMission.AddComponent<CollectSingleRun>();
-            //     missions[i].missionType = MissionType.CollectSingleRun;
-            // } else if (data.missionType[i] == MissionType.TimeRun.ToString()) {
-            //     missions[i] = newMission.AddComponent<TimeRun>();
-            //     missions[i].missionType = MissionType.TimeRun;
-            // }
-            // FIXME: Alteração feita aqui
-            missions[i] = newMission.AddComponent<TimeRun>();
-            missions[i].missionType = MissionType.TimeRun;
+            if (data.missionType[i] == MissionType.CollectSingleRun.ToString()) {
+                missions[i] = newMission.AddComponent<CollectSingleRun>();
+                missions[i].missionType = MissionType.CollectSingleRun;
+            } else if (data.missionType[i] == MissionType.TimeRun.ToString()) {
+                missions[i] = newMission.AddComponent<TimeRun>();
+                missions[i].missionType = MissionType.TimeRun;
+            }
 
             missions[i].max = data.max[i];
             missions[i].progress = data.progress[i];
@@ -180,18 +174,13 @@ public class GameManager : MonoBehaviour
                 GameObject newMission = new GameObject("Mission" + i);
                 newMission.transform.SetParent(transform);
                 // create vector of mission's type 
-                MissionType[] missionTypes = { MissionType.SingleRun, MissionType.CollectSingleRun, MissionType.TimeRun };
-                // int randomType = Random.Range(0, missionTypes.Length);
-                // // verify which mission was selected
-                // if (randomType == (int)MissionType.SingleRun) {
-                //     missions[i] = newMission.AddComponent<SingleRun>();
-                // } else if (randomType == (int)MissionType.CollectSingleRun) {
-                //     missions[i] = newMission.AddComponent<CollectSingleRun>();
-                // } else if (randomType == (int)MissionType.TimeRun) {
-                //     missions[i] = newMission.AddComponent<TimeRun>();
-                // } 
-                // FIXME: Alteração feita aqui
-                missions[i] = newMission.AddComponent<TimeRun>();
+                MissionType[] missionTypes = { MissionType.CollectSingleRun, MissionType.TimeRun };
+                int randomType = Random.Range(0, missionTypes.Length);
+                if (randomType == (int)MissionType.CollectSingleRun) {
+                    missions[i] = newMission.AddComponent<CollectSingleRun>();
+                } else if (randomType == (int)MissionType.TimeRun) {
+                    missions[i] = newMission.AddComponent<TimeRun>();
+                } 
                 missions[i].Created();
             }
         }
@@ -260,18 +249,13 @@ public class GameManager : MonoBehaviour
         GameObject newMission = new GameObject("Mission" + index);
         newMission.transform.SetParent(transform);
         // create vector of mission's type 
-        MissionType[] missionTypes = { MissionType.SingleRun, MissionType.CollectSingleRun, MissionType.TimeRun };
-        // int randomType = Random.Range(0, missionTypes.Length);
-        // // verify which mission was selected
-        // if (randomType == (int)MissionType.SingleRun) {
-        //     missions[index] = newMission.AddComponent<SingleRun>();
-        // } else if (randomType == (int)MissionType.CollectSingleRun) {
-        //     missions[index] = newMission.AddComponent<CollectSingleRun>();
-        // } else if (randomType == (int)MissionType.TimeRun) {
-        //     missions[index] = newMission.AddComponent<TimeRun>();
-        // }
-        // FIXME: Alteração feita aqui
-        missions[index] = newMission.AddComponent<TimeRun>();
+        MissionType[] missionTypes = {  MissionType.CollectSingleRun, MissionType.TimeRun };
+        int randomType = Random.Range(0, missionTypes.Length);
+        if (randomType == (int)MissionType.CollectSingleRun) {
+            missions[index] = newMission.AddComponent<CollectSingleRun>();
+        } else if (randomType == (int)MissionType.TimeRun) {
+            missions[index] = newMission.AddComponent<TimeRun>();
+        }
         missions[index].Created();
 
         FindObjectOfType<Menu>().SetMission();

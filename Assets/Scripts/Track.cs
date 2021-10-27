@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Track : MonoBehaviour
 {
+    public static Track track;
+
     public GameObject[] obstacles;
     public List<GameObject> newObstacles;
     private float obstaclesControl; // control the increment of the number of obstacles
@@ -16,6 +18,11 @@ public class Track : MonoBehaviour
     public Vector2 numberOfCoins; // min and max of coins in game
     public List<GameObject> newCoins;
     public Vector2 numberCoinsInLane; // min and max of coins in same lane
+
+
+    // Variable to set active the coins in lane
+    [HideInInspector]
+    public GameObject[] coinsActive;
 
     // Start is called before the first frame update
     void Start()
@@ -73,6 +80,7 @@ public class Track : MonoBehaviour
             // positionate coin in some lane
             minZPos = randomZPos + 1;
         }
+        coinsActive = GameObject.FindGameObjectsWithTag("Coin");
     }
 
     // Ensures good distribution of coins in lanes

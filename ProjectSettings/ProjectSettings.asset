@@ -147,7 +147,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: 
-    Standalone: 
+    Standalone: com.FURG.MindwaveRunner
     Tizen: 
     iPhone: 
     tvOS: 
@@ -669,11 +669,12 @@ PlayerSettings:
   gcIncremental: 1
   assemblyVersionValidation: 1
   gcWBarrierValidation: 0
-  apiCompatibilityLevelPerPlatform: {}
+  apiCompatibilityLevelPerPlatform:
+    Standalone: 3
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: EndlessRunner
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -681,7 +682,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: EndlessRunner
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: Mindwave Runner
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0

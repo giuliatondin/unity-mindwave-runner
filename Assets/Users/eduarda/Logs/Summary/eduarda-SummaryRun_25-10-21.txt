@@ -1,3 +1,0 @@
-numRun;runTime(s);distance(m);coins;attentionMean
-2;42,495;352;65;73
-3;159,339;2021;329;64

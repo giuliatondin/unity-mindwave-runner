@@ -61,7 +61,7 @@ public class ProgressBar : MonoBehaviour {
 
         Text description = GameObject.Find("Scene Description").GetComponent<Text>();
         if(Menu.sceneControl == 2) description.text = "Mantenha o foco para completar a barra de progresso e pegar sua recompensa!";
-        else if(Menu.sceneControl == 3) description.text = "Mantenha-se relaxado";
+        else if(Menu.sceneControl == 3) description.text = "Mantenha-se relaxado para completar a barra de progresso e pegar sua recompensa!";
     }
 
     // Update is called once per frame
@@ -146,7 +146,7 @@ public class ProgressBar : MonoBehaviour {
     // Get current meditation to fill the progress bar
     void GetCurrentMeditation() {
         if(!getMaximum) {
-            if(meditation > 50) {
+            if(meditation > 60) {
                 progressText.text = "Muito bem, continue relaxando";
                 imageChild[2].sprite = incrementProgress;
                 current += 5;
