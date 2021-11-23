@@ -62,7 +62,7 @@ public class MindwaveUI : MonoBehaviour
 			GUILayout.BeginHorizontal();
 			{
 				DrawControllerGUI();
-				//DrawCalibratorGUI();
+				DrawCalibratorGUI();
 			}
 			GUILayout.EndHorizontal();
 		}
@@ -164,39 +164,39 @@ public class MindwaveUI : MonoBehaviour
 		private void DrawConnectedGUI()
 		{
 			GUILayout.Box("Conectado");
-			// GUILayout.BeginVertical(GUI.skin.box);
-			// {
-			// 	GUILayout.Box("Signal");
-			// 	DrawData("Status", m_MindwaveData.status);
-			// 	DrawData("Poor signal level", m_MindwaveData.poorSignalLevel);
-			// 	DrawSpace();
+			GUILayout.BeginVertical(GUI.skin.box);
+			{
+				GUILayout.Box("Signal");
+				DrawData("Status", m_MindwaveData.status);
+				DrawData("Poor signal level", m_MindwaveData.poorSignalLevel);
+				DrawSpace();
 
-			// 	GUILayout.Box("Senses");
-			// 	DrawData("Attention", m_MindwaveData.eSense.attention);
-			// 	DrawData("Meditation", m_MindwaveData.eSense.meditation);
-			// 	DrawSpace();
+				GUILayout.Box("Senses");
+				DrawData("Attention", m_MindwaveData.eSense.attention);
+				DrawData("Meditation", m_MindwaveData.eSense.meditation);
+				DrawSpace();
 
-			// 	GUILayout.Box("Brain Waves");
-			// 	DrawData("Delta", m_MindwaveData.eegPower.delta);
-			// 	DrawData("Theta", m_MindwaveData.eegPower.theta);
-			// 	DrawData("Low Alpha", m_MindwaveData.eegPower.lowAlpha);
-			// 	DrawData("High Alpha", m_MindwaveData.eegPower.highAlpha);
-			// 	DrawData("Low Beta", m_MindwaveData.eegPower.lowBeta);
-			// 	DrawData("High Beta", m_MindwaveData.eegPower.highBeta);
-			// 	DrawData("Low Gamma", m_MindwaveData.eegPower.lowGamma);
-			// 	DrawData("High Gamma", m_MindwaveData.eegPower.highGamma);
-			// 	DrawSpace();
+				GUILayout.Box("Brain Waves");
+				DrawData("Delta", m_MindwaveData.eegPower.delta);
+				DrawData("Theta", m_MindwaveData.eegPower.theta);
+				DrawData("Low Alpha", m_MindwaveData.eegPower.lowAlpha);
+				DrawData("High Alpha", m_MindwaveData.eegPower.highAlpha);
+				DrawData("Low Beta", m_MindwaveData.eegPower.lowBeta);
+				DrawData("High Beta", m_MindwaveData.eegPower.highBeta);
+				DrawData("Low Gamma", m_MindwaveData.eegPower.lowGamma);
+				DrawData("High Gamma", m_MindwaveData.eegPower.highGamma);
+				DrawSpace();
 
-			// 	GUILayout.Box("Others");
-			// 	DrawData("Blink strength", m_BlinkStrength);
-			// 	DrawData("Raw EEG", m_EEGValue);
-			// }
-			// GUILayout.EndVertical();
+				GUILayout.Box("Others");
+				DrawData("Blink strength", m_BlinkStrength);
+				DrawData("Raw EEG", m_EEGValue);
+			}
+			GUILayout.EndVertical();
 
-			// if(GUILayout.Button("Disconnect from Mindwave"))
-			// {
-			// 	m_Controller.Disconnect();
-			// }
+			if(GUILayout.Button("Disconnect from Mindwave"))
+			{
+				m_Controller.Disconnect();
+			}
 		}
 
 		private void DrawData(string _Label, string _Value)

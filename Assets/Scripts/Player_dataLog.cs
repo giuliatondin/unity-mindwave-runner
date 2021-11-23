@@ -10,6 +10,8 @@ public class Player_dataLog : MonoBehaviour {
 
     private MindwaveDataModel m_MindwaveData;
     private MindwaveDataModel _Data;
+    public Player player;
+
     int dataControl = 0;
     int textControl = 0; // 1 - run, 2 - reward
     [HideInInspector]
@@ -28,7 +30,7 @@ public class Player_dataLog : MonoBehaviour {
             string path = folderPath + "/" + Login.userName + "-RunLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
             // Check if file exist
             if (!File.Exists(path)) {
-                File.WriteAllText(path, "run;lowBeta;highBeta;attention;velocity;currentLife;timestamp(s)\n");
+                File.WriteAllText(path, "run;delta;theta;lowAlpha;HighAlpha;lowBeta;highBeta;lowGamma;highGamma;attention;velocity;currentLife;coins;distance(m);timestamp(s)\n");
                 MindwaveHandler.newActivity = false;
                 run = 1;
             } else if(MindwaveHandler.newActivity == true) {
@@ -38,7 +40,10 @@ public class Player_dataLog : MonoBehaviour {
             //Content of the file
             if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && Player.timeCounter > 0)  {
                 dataControl = m_MindwaveData.eegPower.delta;
-                string content = run + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + Player.speed + ";" + Player.currentLife + ";" + Player.timeCounter + "\n";
+                string content = run + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Delta, m_MindwaveData.eegPower.delta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Theta, m_MindwaveData.eegPower.theta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowAlpha, m_MindwaveData.eegPower.lowAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighAlpha, m_MindwaveData.eegPower.highAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowBeta, m_MindwaveData.eegPower.lowBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighBeta, m_MindwaveData.eegPower.highBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowGamma, m_MindwaveData.eegPower.lowGamma) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighGamma, m_MindwaveData.eegPower.highGamma) + ";" + m_MindwaveData.eSense.attention + ";" + Player.speed + ";" + Player.currentLife + ";" + Player.player.coins + ";" + Player.player.score + ";" + Player.timeCounter + "\n";
+
+                // string content = run + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + Player.speed + ";" + Player.currentLife + ";" + Player.timeCounter + "\n";
+
                 File.AppendAllText(path, content);
 
                 attentionTotal += m_MindwaveData.eSense.attention;
@@ -49,7 +54,7 @@ public class Player_dataLog : MonoBehaviour {
         else if(control == 2) {
             string path = folderPath + "/" + Login.userName + "-RewardLog_" + System.DateTime.Now.ToString("dd-MM-yy") + ".txt";
             if (!File.Exists(path)) {
-                File.WriteAllText(path, "reward;lowBeta;highBeta;attention;currentProgress;timestamp(s)\n");
+                File.WriteAllText(path, "reward;delta;theta;lowAlpha;HighAlpha;lowBeta;highBeta;lowGamma;highGamma;attention;currentProgress;timestamp(s)\n");
                 MindwaveHandler.newActivity = false;
                 reward = 1;
             } else if(MindwaveHandler.newActivity == true) {
@@ -61,7 +66,7 @@ public class Player_dataLog : MonoBehaviour {
             }
             if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && Player.timeCounter > 0 && ProgressBar.current <= 100)  {
                 dataControl = m_MindwaveData.eegPower.delta;
-                string content = reward + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + ProgressBar.current + ";" + Player.timeCounter + "\n";
+                string content = reward + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Delta, m_MindwaveData.eegPower.delta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Theta, m_MindwaveData.eegPower.theta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowAlpha, m_MindwaveData.eegPower.lowAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighAlpha, m_MindwaveData.eegPower.highAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowBeta, m_MindwaveData.eegPower.lowBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighBeta, m_MindwaveData.eegPower.highBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowGamma, m_MindwaveData.eegPower.lowGamma) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighGamma, m_MindwaveData.eegPower.highGamma) + m_MindwaveData.eSense.attention.ToString() + ";" + ProgressBar.current + ";" + Player.timeCounter + "\n";
                 File.AppendAllText(path, content);
             }
         }
@@ -96,7 +101,10 @@ public class Player_dataLog : MonoBehaviour {
             Directory.CreateDirectory(folderPath);
         }
 
-        if(Menu.sceneControl == 1) textControl = 1;
+        if(Menu.sceneControl == 1) {
+            textControl = 1;
+            player = FindObjectOfType<Player>();
+        }
         else if(Menu.sceneControl == 2) textControl = 2;
         else if(Menu.sceneControl == 3) textControl = 3;
     }

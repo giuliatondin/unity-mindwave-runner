@@ -27,6 +27,7 @@ public abstract class MissionBase : MonoBehaviour
     public abstract void RunStart();
     public abstract void Update();
 
+
     public bool GetMissionComplete() {
         if ((progress + currentProgress) >= max) return true;
         else return false;
