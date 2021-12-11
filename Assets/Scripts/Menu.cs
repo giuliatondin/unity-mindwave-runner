@@ -45,6 +45,10 @@ public class Menu : MonoBehaviour
 
     public BonusBase bonus;
 
+    public Dropdown testSelection;
+    [HideInInspector]
+    public static int blockTest = 1;
+
     // Start is called before the first frame update
     void Start() {
         Player.timeCounter = 0;
@@ -76,6 +80,11 @@ public class Menu : MonoBehaviour
         }
 
         SetBonus();
+
+        // block test
+        testSelection.onValueChanged.AddListener(delegate {
+            HandleInputData(testSelection);
+        });
     }
 
     // Update quantity of fishes collected in rewards in menu
@@ -252,4 +261,14 @@ public class Menu : MonoBehaviour
         tracks[trackIndex].color = new Color32(255, 255, 255, 255);
         buyTrackPanel.SetActive(false);
     }
+
+    // Function to set block test
+    public void HandleInputData(Dropdown option) {
+        if(option.value == 0) {
+            blockTest = 1;
+        } else if(option.value == 1) {
+            blockTest = 2;
+        }
+        Debug.Log(blockTest);
+    } 
 }

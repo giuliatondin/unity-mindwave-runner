@@ -1,0 +1,2 @@
+numRun;runTime(s);distance(m);coins;attentionMean
+1;35,874;457;32;59

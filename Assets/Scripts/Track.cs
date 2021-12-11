@@ -27,9 +27,15 @@ public class Track : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        obstaclesControl = numberOfObstacles.x; // set obstaclesControl with min number of obstacles
+        int newNumberOfCoins;
 
-        int newNumberOfCoins = (int)Random.Range(numberOfCoins.x, numberOfCoins.y);
+        if(Menu.blockTest == 1) {
+            obstaclesControl = 0;
+            newNumberOfCoins = 0;
+        } else {
+            obstaclesControl = numberOfObstacles.x; // set obstaclesControl with min number of obstacles
+            newNumberOfCoins = (int)Random.Range(numberOfCoins.x, numberOfCoins.y);
+        }
 
         for(int i = 0; i < newNumberOfCoins; i++){
             newCoins.Add(Instantiate(coin, transform));
@@ -105,11 +111,14 @@ public class Track : MonoBehaviour
     private void OnTriggerEnter(Collider other){
         if(other.CompareTag("Player")){
             transform.position = new Vector3(0, 0, transform.position.z + 379 * 2);
-            obstaclesControl += 5;
-            if(obstaclesControl > numberOfObstacles.y) obstaclesControl = numberOfObstacles.y;
-            InstantiateObstacles();
-            PositionateObstacles();
-            PositionateCoins();
+            if(Menu.blockTest == 0) obstaclesControl = 0;
+            else {
+                obstaclesControl += 5;
+                if(obstaclesControl > numberOfObstacles.y) obstaclesControl = numberOfObstacles.y;
+                InstantiateObstacles();
+                PositionateObstacles();
+                PositionateCoins();
+            }
         }    
     }
 }

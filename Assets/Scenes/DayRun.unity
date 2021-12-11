@@ -3365,6 +3365,7 @@ MonoBehaviour:
   numberOfCoins: {x: 30, y: 60}
   newCoins: []
   numberCoinsInLane: {x: 1, y: 10}
+  coinsActive: []
 --- !u!4 &948875231
 Transform:
   m_ObjectHideFlags: 0
@@ -3917,6 +3918,7 @@ MonoBehaviour:
   numberOfCoins: {x: 30, y: 60}
   newCoins: []
   numberCoinsInLane: {x: 1, y: 10}
+  coinsActive: []
 --- !u!4 &1164653808
 Transform:
   m_ObjectHideFlags: 0
