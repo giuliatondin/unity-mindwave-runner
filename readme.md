@@ -1,7 +1,5 @@
 # MindWave Runner
 
-![image](https://img.shields.io/github/languages/count/giuliatondin/unity-mindwave-runner?color=%23ffd103&style=for-the-badge)
-![image](https://img.shields.io/github/languages/top/giuliatondin/unity-mindwave-runner?color=%23ffd103&style=for-the-badge)
 ![image](https://img.shields.io/github/repo-size/giuliatondin/unity-mindwave-runner?color=%23ffd103&style=for-the-badge)
 ![image](https://img.shields.io/github/license/giuliatondin/unity-mindwave-runner?color=%23ffd103&style=for-the-badge)
 
