@@ -7,12 +7,12 @@
 
 <img src="mindwave-runner-banner.png" alt="Banner do repositório">
 
-> A endless runner game that uses MindWave data to control the character's speed. The game presents two race tracks options and other attention activities.
+> An endless runner game that uses MindWave data to control the character's speed. The game presents two race tracks options and other attention activities.
 
 ## 🚀 Code and tools
 The following tools were used to build this project:
 
-* [C#](docs.microsoft.com/dotnet/csharp/);
+* [C#](https://docs.microsoft.com/dotnet/csharp/);
 * [Unity](https://unity.com);
 * [MindWave NeuroSky](http://developer.neurosky.com/docs/doku.php?id=mindwave);
 * [ThinkGear Connector](http://developer.neurosky.com/docs/doku.php?id=thinkgear_connector_tgc).
