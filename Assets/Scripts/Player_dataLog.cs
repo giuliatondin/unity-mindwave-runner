@@ -39,8 +39,8 @@ public class Player_dataLog : MonoBehaviour {
                 run = ReadLastLine(path);
             }
             //Content of the file
-            if (m_MindwaveData.eegPower.delta > 0 && Player.timeCounter > 0)  {
-                //dataControl = m_MindwaveData.eegPower.delta;
+            if (m_MindwaveData.eegPower.delta > 0 && m_MindwaveData.eegPower.delta != dataControl && Player.timeCounter > 0)  {
+                dataControl = m_MindwaveData.eegPower.delta;
                 // string content = run + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Delta, m_MindwaveData.eegPower.delta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.Theta, m_MindwaveData.eegPower.theta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowAlpha, m_MindwaveData.eegPower.lowAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighAlpha, m_MindwaveData.eegPower.highAlpha) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowBeta, m_MindwaveData.eegPower.lowBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighBeta, m_MindwaveData.eegPower.highBeta) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.LowGamma, m_MindwaveData.eegPower.lowGamma) + ";" + MindwaveManager.Instance.Calibrator.EvaluateRatio(Brainwave.HighGamma, m_MindwaveData.eegPower.highGamma) + ";" + m_MindwaveData.eSense.attention + ";" + Player.speed + ";" + Player.currentLife + ";" + Player.player.coins + ";" + Player.player.score + ";" + Player.timeCounter + "\n";
 
                 string content = run + ";" + m_MindwaveData.eegPower.lowBeta.ToString() + ";" + m_MindwaveData.eegPower.highBeta.ToString() + ";" + m_MindwaveData.eSense.attention.ToString() + ";" + Player.speed + ";" + Player.currentLife + ";" + Player.player.coins + ";" + Player.player.score + ";" + Player.timeCounter + "\n";
